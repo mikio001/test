@@ -1,0 +1,31 @@
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Data" Assembly="DevExpress.Data.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register TagPrefix="dxe" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register TagPrefix="dxgv" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %> 
+
+<dxgv:ASPxGridLookup runat="server" SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css" CssPostfix="iOS" CssFilePath="~/App_Themes/iOS/{0}/styles.css" ShowShadow="false">
+    <GridViewImages SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css" >
+        <LoadingPanel Url="~/App_Themes/iOS/GridView/Loading.gif" />
+        <LoadingPanelOnStatusBar Url="~/App_Themes/iOS/GridView/gvLoadingOnStatusBar.gif" />
+    </GridViewImages>
+    <GridViewImagesFilterControl>
+        <LoadingPanel Url="~/App_Themes/iOS/Editors/Loading.gif" />
+    </GridViewImagesFilterControl>
+    <GridViewProperties>
+        <SettingsPager CurrentPageNumberFormat="{0}"></SettingsPager>
+    </GridViewProperties>
+    <GridViewStyles>
+        <Header SortingImageSpacing="5" />
+    </GridViewStyles>
+    <GridViewStylesEditors>
+        <ProgressBar Height="25px" />
+        <CalendarHeader Spacing="1px" />
+    </GridViewStylesEditors>
+    <ValidationSettings>
+        <ErrorFrameStyle ImageSpacing="4px">
+            <ErrorTextPaddings PaddingLeft="4px" />
+        </ErrorFrameStyle>
+    </ValidationSettings>
+    <ButtonStyle Width="13px" />
+    <DropDownWindowStyle Border-BorderStyle="None"></DropDownWindowStyle>
+</dxgv:ASPxGridLookup>
+

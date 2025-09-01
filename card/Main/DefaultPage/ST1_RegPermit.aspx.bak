@@ -1,0 +1,107 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageAUTH.master" AutoEventWireup="false" CodeFile="ST1_RegPermit.aspx.vb" Inherits="Main_ST1_RegPermit" %>
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script type="text/javascript">
+    function OnRowClick(e) {
+        //Clear the text selection
+        _aspxClearSelection();
+        //Unselect all rows
+        grid._selectAllRowsOnPage(false);
+        //Select the row
+        grid.SelectRow(e.visibleIndex, true);
+
+        gridFAC.PerformCallback();
+
+        gridFACERP.PerformCallback();
+       // document.all('SubmitMessage').innerHTML = "";
+        SubmitMessage.SetText("")
+        SubmitMessage0.SetText("")
+    }
+    function OnRowClick2(e) {
+        SubmitMessage.SetText("")
+        SubmitMessage0.SetText("")
+    }
+</script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="col-lg-7"><dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
+                ClientInstanceName="grid" DataSourceID="SqlDataSource1" KeyFieldName="PermitUser_PK" Width="100%">
+                <Columns>
+                    <dx:GridViewCommandColumn VisibleIndex="0" Width="100px" ButtonType="Button" ShowEditButton="true" ShowDeleteButton="true" ShowNewButtonInHeader="True" >
+                       
+                    </dx:GridViewCommandColumn>
+                    <dx:GridViewDataTextColumn FieldName="username" VisibleIndex="1">
+                       
+                    </dx:GridViewDataTextColumn>
+                     <dx:GridViewDataTextColumn FieldName="Permission" VisibleIndex="5">
+                    </dx:GridViewDataTextColumn>
+                     <dx:GridViewDataTextColumn FieldName="PermitUser_PK" VisibleIndex="6" Visible=false>
+                    </dx:GridViewDataTextColumn>
+                 
+                </Columns>
+                <ClientSideEvents  SelectionChanged="function(s, e) {
+	if (e.isSelected) {
+        var key = s.GetRowKey(e.visibleIndex);
+
+RID.SetValue(key);
+grid2.PerformCallback(key);
+       // alert('Last Key = ' + key);
+    }
+}" />
+                <SettingsBehavior AllowSelectByRowClick="true" AllowSelectSingleRowOnly="True" />
+             
+            </dx:ASPxGridView></div>
+    <div class="col-lg-5"></div>
+            <dx:ASPxTextBox ID="RID" runat="server" ClientInstanceName="RID" ReadOnly="True" Width="170px" ClientVisible="False">
+            </dx:ASPxTextBox>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                ConnectionString="<%$ ConnectionStrings:MAINDB %>" 
+                DeleteCommand="DELETE FROM [MY_PERMISSION_USER] WHERE [PermitUser_PK] = @PermitUser_PK" 
+                InsertCommand="INSERT INTO MY_PERMISSION_USER(username, Permission) VALUES (@username, @permission)" 
+                SelectCommand="SELECT PermitUser_PK, username, Permission  FROM MY_PERMISSION_USER ORDER BY PermitUser_PK DESC" 
+                
+                UpdateCommand="UPDATE MY_PERMISSION_USER SET username = @username, Permission = @permission WHERE (PermitUser_PK = @PermitUser_PK)">
+                <DeleteParameters>
+                    <asp:Parameter Name="PermitUser_PK" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="username" Type="String" />
+                    <asp:Parameter Name="permission" Type="String" />
+      
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="username" Type="String" />
+                     <asp:Parameter Name="permission" Type="String" />
+                 
+                    <asp:Parameter Name="PermitUser_PK" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+    
+              
+   
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
+                ConnectionString="<%$ ConnectionStrings:MAINDB %>" 
+                SelectCommand="SELECT * FROM [REF_STATUS]">
+            </asp:SqlDataSource>
+    
+              
+   
+            <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
+                ConnectionString="<%$ ConnectionStrings:MAINDB %>" 
+                SelectCommand="SELECT [FACULTY_ID], [FACULTY_NAME_TH] FROM [MAS_FACULTY_HR]">
+            </asp:SqlDataSource>
+    
+              
+   
+</asp:Content>
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentBanner">
+</asp:Content>
+
+

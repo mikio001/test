@@ -1,0 +1,20 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="SearchBox.ascx.vb" Inherits="zulu_cms_contents_SearchBox" %>
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<dx:ASPxButtonEdit ID="searchBox" runat="server" ClientIDMode="AutoID" 
+    ClientInstanceName="searchBox" Text="กรอกคำค้นหา">
+    <ClientSideEvents GotFocus="function(s,e){
+    if(searchBox.GetText()=='กรอกคำค้นหา')
+        searchBox.SetText('');
+    }" LostFocus="function(s,e){
+    if(searchBox.GetText()==''||searchBox.GetText()==null)
+        searchBox.SetText('กรอกคำค้นหา');
+    }" />
+    <buttons>
+        <dx:EditButton>
+            <Image Url="~/zulu_web/images/search.gif" ToolTip="ค้นหา">
+            </Image>
+        </dx:EditButton>
+    </buttons>
+</dx:ASPxButtonEdit>
+

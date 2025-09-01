@@ -1,0 +1,9 @@
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Data" Assembly="DevExpress.Data.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+
+<dx:ASPxNavBar runat="server" CssPostfix="iOS" CssFilePath="~/App_Themes/iOS/{0}/styles.css" 
+    SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css">
+    <LoadingPanelImage Url="~/App_Themes/iOS/Web/Loading.gif" />
+	<LoadingPanelStyle ImageSpacing="5" />
+</dx:ASPxNavBar>
+

@@ -1,0 +1,67 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="MediaEditor.ascx.vb" Inherits="zulu_cms_editors_FileEditor" %>
+<%@ Register Assembly="Zulu" Namespace="Zulu.UI" TagPrefix="cc1" %>
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+<table cellpadding="0" cellspacing="4" class="text">
+    <tr>
+        <td>
+            ชื่อเรื่อง:</td>
+        <td>
+            <dx:ASPxTextBox ID="txtTitle" runat="server" Width="300px">
+                <ValidationSettings ErrorText="">
+                    <RequiredField ErrorText="" IsRequired="True" />
+                </ValidationSettings>
+            </dx:ASPxTextBox>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Url ของไฟล์ Media:
+        </td>
+        <td>
+            <cc1:FileSelector ID="FileSelector1" runat="server" Width="300px">
+            </cc1:FileSelector>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            ประเภท:</td>
+        <td>
+            <dx:ASPxComboBox ID="playerType" runat="server" ClientIDMode="AutoID" 
+                SelectedIndex="0" ValueType="System.String">
+                <Items>
+                    <dx:ListEditItem Selected="True" Text="Video หรือ Audio" Value="1" />
+                    <dx:ListEditItem Text="Flash หรือ Youtube" Value="2" />
+                </Items>
+                <ValidationSettings ErrorText="">
+                    <RequiredField ErrorText="" IsRequired="True" />
+                </ValidationSettings>
+            </dx:ASPxComboBox>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            ความกว้าง (px):</td>
+        <td>
+            <dx:ASPxSpinEdit ID="playerWidth" runat="server" Height="21px" Number="320" 
+                Width="60px" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            ความสูง (px):</td>
+        <td>
+            <dx:ASPxSpinEdit ID="playerHeight" runat="server" Height="21px" Number="240" 
+                Width="60px" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            คำอธิบาย:</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <cc1:FckEditor ID="txtContentBody" runat="server" EnableFileUpload="True">
+            </cc1:FckEditor>
+        </td>
+    </tr>
+</table>

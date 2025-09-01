@@ -1,0 +1,55 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageBootstrap.master" AutoEventWireup="false" CodeFile="MasterPageAUTH.master.vb" Inherits="Main_MasterPageAUTH" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentBanner">
+    <asp:ContentPlaceHolder id="ContentBanner" runat="server">
+            <div class="bs-header noprint" >              
+                  <div class="container">
+                    <h1>University Of Phayao </h1>
+                    <p>Site Templete</p>       
+                  </div>                  
+            </div>
+         </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+
+<asp:Content ID="Content4" runat="server" contentplaceholderid="ContentHeader">
+    <asp:ContentPlaceHolder id="ContentHeader" runat="server">
+        <%--<div class="bs-old-docs">
+            <div class="container">
+                <div style="float:left;padding-top:8px; padding-right:10px;">
+                    <a id="backbutton" style="position:inherit;" class="win-backbutton" href="javascript:history.back();"></a>
+                </div>
+                <div style="float:left;">
+                    <h5>University Of Phayao</h5>
+                    <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="#" >BI </a>
+                    <h6>
+                        <asp:Label ID="PageLabel" runat="server" Text=""></asp:Label>
+                    </h6>
+                </div>
+            </div>
+        </div>--%>
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+
+
+<asp:Content ID="Content5" runat="server" contentplaceholderid="ContentFooter">
+     <asp:ContentPlaceHolder id="ContentFooter" runat="server">
+        
+            
+        
+        </asp:ContentPlaceHolder>
+</asp:Content>
+
+
+
+

@@ -1,0 +1,123 @@
+﻿
+Partial Class Main_DefaultPage_LoginForm
+    Inherits System.Web.UI.UserControl
+
+    Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
+       
+        If Not Page.IsCallback Then
+            Dim newCookie As HttpCookie = Request.Cookies("Authensecurity")
+            If Not IsNothing(newCookie) Then
+                If Not newCookie("username") Is Nothing Then
+
+
+                    Session("username") = newCookie("username")
+                    Session("SessionKey") = newCookie("SessionKey")
+                    Session("security") = newCookie("security")
+                    Session("DescriptionName") = newCookie("DescriptionName")
+                    Session("DescriptionNameT") = newCookie("DescriptionNameT")
+                    Response.Cookies("Authensecurity").Expires = Now.AddDays(15)
+                    Try
+                        Dim u As String = Request.QueryString("u")
+                        If Not IsNothing(u) Then
+                            Response.Redirect(u)
+                        Else
+                            Response.Redirect("../Coffee/default.aspx")
+                        End If
+
+
+
+                    Catch ex As Exception
+                      
+                    End Try
+                End If
+
+
+            End If
+        End If
+        If Not Session("username") Is Nothing Then
+            ASPxCallbackPanel1.Visible = False
+        End If
+    End Sub
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+    End Sub
+
+    Protected Sub ASPxButton1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButton1.Click
+        login()
+    End Sub
+  
+    Sub login()
+        Dim auth As New AuthenService.AuthenService
+        'Dim cr As New System.Net.NetworkCredential(ASPxTextBox1.Text, ASPxTextBox2.Text, "up")
+        'Dim pr As New System.Net.WebProxy("proxy.up.ac.th", 8080)
+        'pr.Credentials = cr
+        'auth.Proxy = pr
+        Dim enc As New EncodeBase64
+        Session("EditMode") = False
+        Try
+
+            Dim db = Zulu.Data.PlatformFactory.GetPlatform("MAINDB", True, False)
+            Dim errorT = ""
+
+            Dim AuthenResult = db.GetValue("select count(*) from MY_PERMISSION_USER where RecordStatus='N' and username=@username and password=@password", db.NewParam("username", ASPxTextBox1.Text), db.NewParam("password", ASPxTextBox2.Text))
+            If (AuthenResult = 0) Then
+                ASPxLabel1.Text = "Username หรือ Password ไม่ถูกต้อง"
+                db.Close()
+                Exit Sub
+            End If
+
+            Dim dr = db.GetDataTable("select * from MY_PERMISSION_USER where username=@username", db.NewParam("username", ASPxTextBox1.Text))
+            db.ThrowIfError()
+            If db.IsError(errorT) Then
+                ASPxLabel1.Text = "Error 02"
+                db.Close()
+                Exit Sub
+            End If
+            If dr.Rows.Count <> 0 Then
+                Session("username") = ASPxTextBox1.Text
+                Session("SessionKey") = AuthenResult
+                Session("security") = dr.Rows(0)("permission").ToString
+
+                If dr.Rows(0)("permission").ToString = "A" Then
+                    Zulu.Cms.Factory.IsEditMode = True
+                End If
+                Session("DescriptionName") = Session("username")
+                Session("DescriptionNameT") = " Security :" & dr.Rows(0)("permission").ToString
+
+
+                '  If CheckBox1.Checked = True Then
+                Dim newCookie As HttpCookie = New HttpCookie("Authensecurity")
+                newCookie("username") = ASPxTextBox1.Text
+                newCookie("SCHOOL_ID") = ""
+                newCookie("security") = dr.Rows(0)("permission").ToString
+                newCookie("DescriptionNameT") = ""
+                newCookie("DescriptionName") = Session("username")
+                newCookie("DescriptionNameT") = ""
+                newCookie.Expires = Now.AddDays(15)
+                Response.Cookies.Add(newCookie)
+                'End If
+
+
+                '  Dim cp As DevExpress.Web.ASPxCallbackPanel.ASPxCallbackPanel = CType(sender, DevExpress.Web.ASPxCallbackPanel.ASPxCallbackPanel)
+                Dim u As String = Request.QueryString("u")
+
+                If Not String.IsNullOrEmpty(u) Then
+                    Response.Redirect(ResolveClientUrl(Server.UrlDecode(u)))
+                    '       cp.JSProperties("cpRedirectUrl") = ResolveClientUrl(Server.UrlDecode(u))
+                Else
+                    '      cp.JSProperties("cpRedirectUrl") = "default.aspx"
+                    Response.Redirect("../Coffee/default.aspx")
+                End If
+
+            Else
+                ASPxLabel1.Text = "ไม่มีสิทธิ์เข้าใช้งานระบบ"
+            End If
+            dr = Nothing
+
+            db.Close()
+        Catch ex As Exception
+
+            ASPxLabel1.Text = "Username หรือ Password ไม่ถูกต้อง"
+        End Try
+    End Sub
+End Class

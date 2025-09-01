@@ -1,0 +1,66 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="CalendarView.ascx.vb" Inherits="zulu_cms_contents_CalendarView" %>
+<%@ Register assembly="DevExpress.Web.ASPxScheduler.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxScheduler" tagprefix="dxwschs" %>
+<%@ Register assembly="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraScheduler" tagprefix="cc1" %>
+    <%@ Register src="../StartEditorToolbox.ascx" tagname="StartEditorToolbox" tagprefix="uc1" %>
+<%@ Register src="../EndEditorToolbox.ascx" tagname="EndEditorToolbox" tagprefix="uc2" %>
+<uc1:StartEditorToolbox ID="StartEditorToolbox1" runat="server" />
+    <dxwschs:ASPxScheduler ID="ASPxScheduler1" runat="server" 
+        ActiveViewType="Month"  AppointmentDataSourceID="SqlDataSource1" 
+        ClientIDMode="AutoID" >
+        <Storage>
+            <Appointments>
+                <Mappings AppointmentId="itemID" End="endDate" Start="startDate" 
+                    Subject="title" />
+            </Appointments>
+        </Storage>
+        <Views>
+            <DayView >
+                <TimeRulers>
+<cc1:TimeRuler></cc1:TimeRuler>
+</TimeRulers>
+
+                <DayViewStyles ScrollAreaHeight="350px">
+                </DayViewStyles>
+            </DayView>
+            <WorkWeekView >
+                <WorkWeekViewStyles ScrollAreaHeight="350px">
+                </WorkWeekViewStyles>
+<TimeRulers>
+<cc1:TimeRuler></cc1:TimeRuler>
+</TimeRulers>
+            </WorkWeekView>
+            <WeekView >
+                <WeekViewStyles>
+                    <DateCellBody Height="50px" />
+                </WeekViewStyles>
+            </WeekView>
+            <MonthView  CompressWeekend="False" ShowMoreButtons="False">
+                <MonthViewStyles>
+                    <DateCellBody Height="70px" />
+                </MonthViewStyles>
+                 <AppointmentDisplayOptions EndTimeVisibility="Never" StartTimeVisibility="Never" />
+            </MonthView>
+            <TimelineView >
+                <TimelineViewStyles>
+                    <TimelineCellBody Height="350px" />
+                </TimelineViewStyles>
+            </TimelineView>
+        </Views>
+         <ClientSideEvents AppointmentsSelectionChanged="function(s, e) {
+window.location.href = 'ContentShow.aspx?itemID='+e.appointmentIds;
+}" />
+    </dxwschs:ASPxScheduler>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ZuluDB %>" 
+        
+    SelectCommand="SELECT [itemID], SUBSTRING([title],1,80) as title, [startDate], [endDate] FROM [ZCMS_CONTENT] WHERE (([contentID] = @contentID) AND ([siteID] = @siteID) )">
+     <SelectParameters>
+            <asp:Parameter Name="contentID" Type="String" DefaultValue=""/>
+            <asp:Parameter Name="siteID" Type="String" DefaultValue="" />
+           
+        </SelectParameters>
+    </asp:SqlDataSource>
+
+<uc2:EndEditorToolbox ID="EndEditorToolbox1" runat="server" />
+
+

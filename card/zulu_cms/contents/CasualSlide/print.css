@@ -1,0 +1,228 @@
+body {
+	font: 9pt/1.3 "Times New Roman", Times, Georgia, serif; border: currentColor; color: rgb(40, 40, 39); font-size-adjust: none; font-stretch: normal;
+}
+h1 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h2 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h3 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h4 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h5 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h6 {
+	letter-spacing: 1px; clear: both; margin-top: 3pt;
+}
+h1 a {
+	text-decoration: none;
+}
+h2 {
+	font-size: 16pt; margin-top: 10pt;
+}
+h3 {
+	font-size: 14pt;
+}
+.channel-more {
+	font-size: 14pt;
+}
+h4 {
+	font-size: 12pt;
+}
+h5 {
+	font-size: 9pt;
+}
+.listing li h3 a {
+	font-size: 9pt;
+}
+h6 {
+	font-size: 9pt;
+}
+h1 {
+	page-break-after: avoid;
+}
+h2 {
+	page-break-after: avoid;
+}
+h3 {
+	page-break-after: avoid;
+}
+h4 {
+	page-break-after: avoid;
+}
+h5 {
+	page-break-after: avoid;
+}
+h6 {
+	page-break-after: avoid;
+}
+a {
+	color: rgb(102, 102, 102);
+}
+img {
+	border: currentColor; display: block;
+}
+p {
+	line-height: 1.5; margin-top: 0px;
+}
+table {
+	margin-bottom: 20px; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid; border-collapse: collapse;
+}
+td {
+	padding: 6px; border-top-color: currentColor; border-top-width: 1px; border-top-style: solid;
+}
+pre {
+	vertical-align: baseline;
+}
+code {
+	vertical-align: baseline;
+}
+blockquote {
+	padding-left: 10px; margin-bottom: 30px; border-left-color: rgb(153, 153, 153); border-left-width: 1px; border-left-style: solid; page-break-inside: avoid;
+}
+.ltd li a[href]::after {
+	color: rgb(102, 102, 102); font-size: 60%; display: block; content: " (" attr(href) ") ";
+}
+.adjoin-header a[href]::after {
+	color: rgb(102, 102, 102); font-size: 60%; display: block; content: " (" attr(href) ") ";
+}
+.adjoin-options a[href]::after {
+	color: rgb(102, 102, 102); font-size: 60%; display: block; content: " (" attr(href) ") ";
+}
+#main-nav {
+	display: none !important;
+}
+.utility {
+	display: none !important;
+}
+.header-nav {
+	display: none !important;
+}
+.move {
+	display: none !important;
+}
+.more {
+	display: none !important;
+}
+.filter-wrap {
+	display: none !important;
+}
+.link-reply {
+	display: none !important;
+}
+.load {
+	display: none !important;
+}
+.controls {
+	display: none !important;
+}
+.action-footer {
+	display: none !important;
+}
+.footer ul {
+	display: none !important;
+}
+.copy-footer ul {
+	display: none !important;
+}
+.secondary {
+	display: none !important;
+}
+.breadcrumb {
+	display: none !important;
+}
+.directory-search {
+	display: none !important;
+}
+.adjunct {
+	display: none !important;
+}
+.no-print {
+	display: none !important;
+}
+.btn {
+	display: none !important;
+}
+.follow-up {
+	display: none !important;
+}
+.logo {
+	display: none !important;
+}
+#main {
+	padding-bottom: 20px; margin-bottom: 25px; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+abbr {
+	border: currentColor;
+}
+.channel-more a {
+	text-decoration: none;
+}
+.listing {
+	padding-left: 0px;
+}
+.streamer li h3 {
+	margin-bottom: 3pt;
+}
+.expandable .listing li {
+	list-style: none; padding: 0px 0px 3pt;
+}
+.home .expandable .listing li {
+	margin-bottom: 3pt; border-bottom-color: rgb(51, 51, 51); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.expandable .listing * {
+	margin-bottom: 2pt;
+}
+.expandable .listing li li {
+	padding: 0px; border: currentColor;
+}
+.home .expandable .listing li li {
+	padding: 0px; border: currentColor;
+}
+a img {
+	margin-bottom: 7pt; display: block;
+}
+.streamer {
+	margin-bottom: 10pt; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.section {
+	margin-bottom: 10pt; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.data-tweet {
+	padding-left: 0px;
+}
+div.data-tweet {
+	clear: left;
+}
+.data-tweet li {
+	list-style: none; margin-bottom: 10pt;
+}
+.data-tweet li * {
+	margin-bottom: 1pt;
+}
+.feature-update * {
+	margin-bottom: 1pt;
+}
+.data-tweet img {
+	margin: 0px 5pt 5pt 0px; float: left;
+}
+.ltd h3 {
+	margin-bottom: 0px;
+}
+.ltd ul {
+	margin: 0px 0px 15pt;
+}
+#logo {
+	margin-bottom: 10pt;
+}
+.intro {
+	margin-bottom: 10pt; border-bottom-color: rgb(0, 0, 0); border-bottom-width: 2px; border-bottom-style: solid;
+}
+:first-of-type.section {
+	border: currentColor;
+}

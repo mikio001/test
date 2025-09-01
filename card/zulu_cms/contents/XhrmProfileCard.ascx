@@ -1,0 +1,1 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="XhrmProfileCard.ascx.vb" Inherits="zulu_cms_contents_XhrmProfileList" %>

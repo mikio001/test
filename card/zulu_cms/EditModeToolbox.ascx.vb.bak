@@ -1,0 +1,70 @@
+﻿
+Partial Class zulu_cms_EditModeToolbox
+    Inherits System.Web.UI.UserControl
+
+    Public Property EditSiteText As String = "แก้ไขเว็บนี้"
+    Public Property ExitEditModeText As String = "ออกจากการแก้ไข"
+    Public Property AdminButtonText As String = "แก้ไขสิทธิ์การแก้ไขเนื้อหา"
+    Public Property AccountButtonText As String = "จัดการบัญชีผู้ใช้งาน"
+    Public Property AclButtonText As String = "แก้ไขสิทธิ์ผู้ใช้งาน"
+    Public Property StoreButtonText As String = "จัดการแฟ้มเก็บไฟล์"
+    Public Property NewProb As String = "อนุมัติข่าว"
+    Public Property ShowAdminButton As Boolean = True
+
+    Protected Sub EditModeToolbox_Callback_Callback(ByVal source As Object, ByVal e As DevExpress.Web.ASPxCallback.CallbackEventArgs) Handles EditModeToolbox_Callback.Callback
+        If e.Parameter = "end" Then
+            Zulu.Cms.Factory.IsEditMode = False
+        End If
+
+        e.Result = "1"
+    End Sub
+
+    'Protected Sub LoginPopupControl1_LoginComplete(ByRef parameter As String, ByRef cancel As Boolean) Handles LoginPopupControl1.LoginComplete
+    '    Dim NewCHK As New CheckContentPermit
+    '    If NewCHK.CheckSitePermission() Then
+    '        Zulu.Cms.Factory.IsEditMode = True
+    '        parameter = "document.location.reload(true);"
+    '    Else
+    '        parameter = "alert('Access denied!');"
+    '    End If
+    'End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Zulu.Cms.Factory.IsEditMode Then
+            editorPanel.Visible = True
+            ' editorPopup.ShowOnPageLoad = True
+            '  btnAdmin.Text = AdminButtonText
+            '   btnEndEdit.Text = ExitEditModeText
+
+            ' btnAdmin.ClientSideEvents.Click = "function(s,e){window.open('" & ResolveClientUrl("~/zulu_cms/admin/Acl.aspx") & "','Admin','width=700,height=500');}"
+
+        End If
+       
+
+    End Sub
+    Function checkAdmin()
+        'If Zulu.Cms.Factory.IsEditMode = True Then
+        '    Dim NewCHK As New CheckContentPermit
+        '    If Not NewCHK.CheckAdminPermission() Then
+
+        '        Return False
+
+
+        '    End If
+        'End If
+        Return True
+    End Function
+
+    Protected Sub DirectRender1_RenderHtml(ByVal w As System.Web.UI.HtmlTextWriter, ByVal dItem As Object) Handles DirectRender1.RenderHtml
+        If Not Zulu.Cms.Factory.IsEditMode Then
+            w.Write("<a href=""javascript:zulu_showLoginForm()"">")
+            w.Write("<img src=""")
+            w.Write(ResolveClientUrl("~/zulu_web/images/edit.gif"))
+            w.Write(""" border=""0"" align=""absmiddle"" />")
+            w.Write(EditSiteText)
+            w.Write("</a>")
+        Else
+
+        End If
+    End Sub
+End Class

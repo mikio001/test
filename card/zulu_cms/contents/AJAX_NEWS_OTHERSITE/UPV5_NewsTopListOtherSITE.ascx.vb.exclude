@@ -1,0 +1,87 @@
+﻿
+Partial Class zulu_cms_contents_NewsTopList
+    Inherits Zulu.Cms.ReaderControl
+
+    Public Property MaxNewsCount As Integer = 10
+    Public Property NewsReaderPageUrl As String = "~/News_Read.aspx?itemID={0}"
+    Public Property Target As String = "_self"
+    Public Property FormEditorID As String = "NEWS"
+    Public Property NewsType As Integer = 0
+    Public Property NewSID As String = ""
+    Public Property ContentID As String = "News1"
+
+    Protected Sub NewsTopList_RenderHtml(ByVal w As System.Web.UI.HtmlTextWriter, ByVal dItem As Object) Handles NewsTopList.RenderHtml
+        '     w.Write(" <script type='text/javascript' charset='utf-8'> " &
+        '      "  $(document).ready(function () { " &
+        '      "  $('#" & ContentID & "').bxSlider({ " &
+        '     "mode:   'vertical', " &
+        '"        auto: true, " &
+        '  "      pager: false, " &
+        '  "      controls: false, " &
+        '  "      displaySlideQty: 4, " &
+        ' "       moveSlideQty: 1, autoHover: true, " &
+        ' "       speed: 7000 " &
+        '       "   }); }) " &
+        '        "    </script> ")
+
+        Dim db = Zulu.Data.PlatformFactory.GetPlatform(Zulu.Web.Settings.ZuluDbConnectionName, True, False)
+        Dim sql As String = ""
+        Dim WnewType As String = ""
+        If NewsType <> 0 Then
+            WnewType = " and contenttype=" & NewsType
+        End If
+        sql = GetSQL(0, WnewType)
+
+        Dim dr = db.GetReader(sql)
+        Dim errMsg As String = ""
+        If db.IsError(errMsg) Then
+            Zulu.Cms.Factory.WriteErrorMsg(w, errMsg)
+        Else
+            Dim readPage = ResolveClientUrl(NewsReaderPageUrl)
+            Dim IDN = ""
+            'If NewSID <> "" Then IDN = "ID='" & ContentID & "'"
+            w.Write("<ul id=" & ContentID & ">")
+
+            While dr.Read
+                Dim refUrl As String
+                If Not dr.IsDBNull(3) AndAlso dr.GetString(3) <> "" Then
+                    refUrl = dr.GetString(3)
+                Else
+                    refUrl = String.Format(readPage, dr.GetInt32(0))
+                End If
+
+                w.Write("<li style='height:60px;border-bottom:1px dotted #96F;vertical-align:middle;color:#66666;'><table style='width: 100%; height: 60px;' ><tr><td valign='middle'><a href=""" & refUrl & """ target=""" & Target & """>" & dr.GetString(1) & "</a> |" & dr.GetString(4) & "  " & dr.GetDateTime(2).ToString("d MMM yyyy") & "</td></tr></table></li>")
+            End While
+
+            w.Write("</ul>")
+            dr.Close()
+        End If
+        db.Close()
+
+    End Sub
+    Function GetSQL(ByVal index As Integer, ByVal WnewType As String)
+        Dim SiteKey As New NewsSite
+        Dim sql = ""
+        Dim top = ""
+        Dim Where = ""
+        If MaxNewsCount > 0 Then
+            top = " top " & MaxNewsCount & ""
+        End If
+        Dim Desp = ""
+        For i As Integer = 1 To SiteKey.GetCount
+            Dim vSiteID = SiteKey.GetSite(i)
+            If Desp = "" Then Desp &= " Case  "
+            If Where <> "" Then Where &= " or "
+            Where &= " (ContentID='" & vSiteID(1) & "' and SiteID='" & vSiteID(0) & "') "
+            Desp &= " when SiteID='" & vSiteID(0) & "' then '" & vSiteID(2) & "'"
+        Next
+        If Where <> "" Then Where = " and (" & Where & ")" : Desp &= " else '' end "
+        sql = " select " & top & " itemID,title,modifyDate,refUrl,(" & Desp & ") as Description from ZCMS_CONTENT where  propsStatus=1 and (expireDate is null or expireDate > GETDATE()) " & WnewType & " " & Where & ""
+        sql &= " order by itemID desc"
+        Return sql
+    End Function
+
+End Class
+
+
+

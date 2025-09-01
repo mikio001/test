@@ -1,0 +1,82 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="CalendarEditor.ascx.vb" Inherits="zulu_cms_editors_CalendarEditor" %>
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<script type="text/javascript">
+    function doEdit(itemID) {
+        window.open("Editor.aspx?editor=CalendarForm&contentID=<%=Request.QueryString("contentID")%>&itemID=" + itemID, "CalendarEdit", "width=600,height=500");
+    }
+</script>
+<dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
+    ClientIDMode="AutoID" DataSourceID="SqlDataSource1" KeyFieldName="itemID" 
+    Width="100%">
+    <Columns>
+        <dx:GridViewCommandColumn ButtonType="Image" Caption="&amp;nbsp;" 
+            VisibleIndex="0" Width="25px">
+            <DeleteButton Visible="True">
+                <Image Url="~/zulu_web/images/delete.gif">
+                </Image>
+            </DeleteButton>
+        </dx:GridViewCommandColumn>
+        <dx:GridViewDataHyperLinkColumn Caption="&amp;nbsp;" FieldName="itemID" 
+            ReadOnly="True" VisibleIndex="0" Width="25px">
+            <PropertiesHyperLinkEdit ImageUrl="~/zulu_web/images/edit.gif" 
+                NavigateUrlFormatString="javascript:doEdit({0})">
+            </PropertiesHyperLinkEdit>
+            <EditFormSettings Visible="False" />
+            <CellStyle HorizontalAlign="Center">
+            </CellStyle>
+        </dx:GridViewDataHyperLinkColumn>
+        <dx:GridViewDataTextColumn Caption="หัวเรื่อง" FieldName="title" 
+            VisibleIndex="1">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataComboBoxColumn Caption="ประเภท" FieldName="contentType" 
+            VisibleIndex="2">
+            <PropertiesComboBox DataSourceID="SqlDataSource2" TextField="name" 
+                ValueField="contentTypeID" ValueType="System.Int32">
+            </PropertiesComboBox>
+        </dx:GridViewDataComboBoxColumn>
+        <dx:GridViewDataDateColumn Caption="กำหนดเริ่ม" FieldName="startDate" 
+            VisibleIndex="3">
+        </dx:GridViewDataDateColumn>
+        <dx:GridViewDataDateColumn Caption="กำหนดสิ้นสุด" FieldName="endDate" 
+            VisibleIndex="4">
+        </dx:GridViewDataDateColumn>
+    </Columns>
+    <SettingsBehavior ConfirmDelete="True" />
+    <SettingsText ConfirmDelete="ท่านต้องการลบกิจกรรมที่เลือกใช่หรือไม่?" />
+</dx:ASPxGridView>
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:ZuluDB %>" 
+    DeleteCommand="DELETE FROM [ZCMS_CONTENT] WHERE [itemID] = @itemID" 
+    InsertCommand="INSERT INTO [ZCMS_CONTENT] ([title], [contentType], [startDate], [endDate]) VALUES (@title, @contentType, @startDate, @endDate)" 
+    SelectCommand="SELECT [itemID], [title], [contentType], [startDate], [endDate] FROM [ZCMS_CONTENT] WHERE ([contentID] = @contentID) and ([siteID]=@siteID) ORDER BY [startDate]" 
+    UpdateCommand="UPDATE [ZCMS_CONTENT] SET [title] = @title, [contentType] = @contentType, [startDate] = @startDate, [endDate] = @endDate WHERE [itemID] = @itemID">
+    <DeleteParameters>
+        <asp:Parameter Name="itemID" Type="Int32" />
+    </DeleteParameters>
+    <InsertParameters>
+        <asp:Parameter Name="title" Type="String" />
+        <asp:Parameter Name="contentType" Type="Int32" />
+        <asp:Parameter Name="startDate" Type="DateTime" />
+        <asp:Parameter Name="endDate" Type="DateTime" />
+    </InsertParameters>
+    <SelectParameters>
+        <asp:Parameter Name="contentID" Type="String" />
+        <asp:Parameter Name="siteID" Type="String" />
+    </SelectParameters>
+    <UpdateParameters>
+        <asp:Parameter Name="title" Type="String" />
+        <asp:Parameter Name="contentType" Type="Int32" />
+        <asp:Parameter Name="startDate" Type="DateTime" />
+        <asp:Parameter Name="endDate" Type="DateTime" />
+        <asp:Parameter Name="itemID" Type="Int32" />
+    </UpdateParameters>
+</asp:SqlDataSource>
+<asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:ZuluDB %>" 
+    SelectCommand="SELECT * FROM [ZCMS_CONTENT_TYPE] WHERE ([contentTypeID] &gt;= @contentTypeID)">
+    <SelectParameters>
+        <asp:Parameter DefaultValue="100" Name="contentTypeID" Type="Int32" />
+    </SelectParameters>
+</asp:SqlDataSource>
+

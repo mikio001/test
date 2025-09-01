@@ -1,0 +1,198 @@
+﻿Imports System.Data
+
+Partial Class Main_DefaultPage_MasterPageMetro
+    Inherits System.Web.UI.MasterPage
+    Dim MenuKeyName As Integer
+    Public menuText, lblAuthenMenu, pageNav As String
+
+    Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
+        '   Session("username") = "naruboworn.pi"
+        If IsNothing(Session("EditMode")) Then Session("EditMode") = False
+
+        Dim a = Request.ServerVariables("URL")
+        InStr(a.ToLower, "main")
+        Dim b = Mid(a, InStr(a.ToLower, "main") + 5, a.Length - InStr(a.ToLower, "main") - 4).ToLower
+        Dim db = Zulu.Data.PlatformFactory.GetPlatform("MAINDB", True, False)
+        Dim dtb = db.GetDataTable("select top 1 ParentField,MenuName,Menu_PK from MY_MENU where MenuURL like '%" & b & "%'")
+        Dim lblText = ""
+        If Not dtb Is Nothing Then
+            If (dtb.Rows.Count <> 0) Then
+                lblText = "<b>" & dtb.Rows(0).Item("MenuName") & "</b>"
+                MenuKeyName = dtb.Rows(0).Item("Menu_PK")
+                Dim ParentField = dtb.Rows(0).Item("ParentField")
+                While ParentField <> 0
+                    Dim dr = db.GetReader("select top 1 ParentField,MenuName,MenuURL from MY_MENU where Menu_PK = " & ParentField)
+                    If dr.Read Then
+                        ParentField = dr("ParentField")
+                        lblText = "<a href='" & dr("MenuURL") & "'>" & dr("MenuName") & "</a> <img src='../Images/arrows-top.jpg' /> " & lblText
+                    End If
+                    dr.Close()
+
+                End While
+
+            End If
+        End If
+
+        If lblText <> "" Then lblText = " " & lblText
+        '  PageLabel.Text = lblText
+        pageNav = lblText
+
+
+        If Not Page.IsCallback Then
+            Dim newCookie As HttpCookie = Request.Cookies("Authensecurity")
+            If Not IsNothing(newCookie) Then
+                If Not newCookie("username") Is Nothing Then
+
+
+                    Session("username") = newCookie("username")
+                    Session("SessionKey") = newCookie("SessionKey")
+                    Session("security") = newCookie("security")
+                    Session("DescriptionName") = newCookie("DescriptionName")
+                    Session("DescriptionNameT") = newCookie("DescriptionNameT")
+                    Response.Cookies("Authensecurity").Expires = Now.AddDays(15)
+                    Try
+                        db.Close()
+                        Dim u As String = Request.QueryString("u")
+                        If Not IsNothing(u) Then
+                            Response.Redirect(u)
+                        Else
+                            Response.Redirect("../Defaultpage/default.aspx")
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                End If
+
+
+            End If
+        End If
+
+        db.Close()
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
+        If Session("security") = "A" Then
+            btEditMode.Visible = True
+            If Session("EditMode") = False Then
+
+                btEditMode.Text = "EditMode = OFF"
+            Else
+
+                btEditMode.Text = "EditMode = ON"
+            End If
+        End If
+      
+
+        Dim a As New MenuGenerater
+        ' ASPxMenu1 = a.BuildMenu(ASPxMenu1, Session("security"))
+        menuText = BuildMenuUL(Session("security"), MenuKeyName)
+
+        ' End If
+        '    lblName.Text = Session("DescriptionName")
+        If Not IsNothing(Session("security")) Then
+            If Session("security").ToString <> "T" And Session("security").ToString <> "S" And Session("security").ToString <> "" Then
+                '           lblsecurity.Text = Session("DescriptionNameT")
+            End If
+            lblAuthenMenu = "<a href='../DefaultPage/Logout.aspx'><div type='button'  class='btn btn-danger'>Logout</div></a>"
+        Else
+            lblAuthenMenu = "<a href='../DefaultPage/Login.aspx?u=" & Request.ServerVariables("URL") & "' style='padding-top:5px' ><div type='button' style='height:35px'  class='btn btn-info glyphicon glyphicon-user'> Admin</div></a>"
+        End If
+
+
+    End Sub
+    Function BuildMenuUL(ByVal security As String, MenuKeyName As Integer) As String
+        Dim ULMenu = ""
+        ' Get DataView
+        'Dim sqldata As New SqlDataSource
+        '  Dim a As New Zulu.Cms.ReaderControl
+        If security Is Nothing Then security = ""
+        Dim db = Zulu.Data.PlatformFactory.GetPlatform("MAINDB", True, False)
+        db.Execute("update MY_MENU set ParentField=0 where ParentField is null")
+
+        Dim sql = ""
+    
+        If security = "" Then
+            sql = "SELECT Menu_PK, MenuURL, MenuName, ParentField, menuIndex, PreviewField,HideLogin  FROM MY_MENU WHERE ParentField<>0 and ((CHARINDEX(@Permission, AllowShow, 0) > 0)  or (@Permission = 'A')  or (AllowShow = '')  or (AllowShow IS NULL)) order by ParentField,menuIndex"
+        Else
+            sql = "SELECT Menu_PK, MenuURL, MenuName, ParentField, menuIndex, PreviewField,HideLogin  FROM MY_MENU WHERE ParentField<>0 and (HideLogin<>1 or HideLogin is null) and ((CHARINDEX(@Permission, AllowShow, 0) > 0)  or (@Permission = 'A')  or (AllowShow = '')  or (AllowShow IS NULL)) order by ParentField,menuIndex"
+        End If
+
+        Dim dtbAll = db.GetDataTable(sql, db.NewParam("Permission", security))
+
+        If security = "" Then
+            sql = "SELECT Menu_PK, MenuURL, MenuName, ParentField, menuIndex, PreviewField,HideLogin  FROM MY_MENU WHERE ParentField=0 and  ((CHARINDEX(@Permission, AllowShow, 0) > 0)  or (@Permission = 'A')  or (AllowShow = '')  or (AllowShow IS NULL)) order by ParentField,menuIndex"
+        Else
+            sql = "SELECT Menu_PK, MenuURL, MenuName, ParentField, menuIndex, PreviewField,HideLogin  FROM MY_MENU WHERE ParentField=0 and (HideLogin<>1 or HideLogin is null) and ((CHARINDEX(@Permission, AllowShow, 0) > 0)  or (@Permission = 'A')  or (AllowShow = '')  or (AllowShow IS NULL)) order by ParentField,menuIndex"
+        End If
+
+        Dim arg As DataSourceSelectArguments = New DataSourceSelectArguments()
+        Dim dataView As DataTable = db.GetDataTable(sql, db.NewParam("Permission", security)) 'TryCast(sqldata.Select(arg), DataView)
+        ' dataView.Sort = "ParentField"
+
+        ' Build Menu Items
+        Dim menuItems As Dictionary(Of String, DevExpress.Web.MenuItem) = New Dictionary(Of String, DevExpress.Web.MenuItem)()
+        ULMenu &= "<li class='nav'>"
+        For i As Integer = 0 To dataView.Rows.Count - 1
+            Dim row As DataRow = dataView.Rows(i)
+
+            Dim dr() As DataRow = dtbAll.Select("ParentField=" & row("Menu_PK"))
+            If dr.Length = 0 Then
+                If MenuKeyName = row("Menu_PK") Then
+                    ULMenu &= "<li class='active'>"
+                Else
+                    ULMenu &= "<li>"
+                End If
+                ULMenu &= "<a href='" & row("MenuURL") & "' >" & row("MenuName") & "</a></li>"
+            Else
+                ULMenu = BuildSubMenuUL(dtbAll, dr, ULMenu, row("MenuName"), MenuKeyName, row("Menu_PK"), row("MenuURL").ToString)
+            End If
+nxt:
+
+        Next i
+        ULMenu &= "</li>"
+        db.Close()
+        Return ULMenu
+    End Function
+    Function BuildSubMenuUL(dtbAll As DataTable, row() As DataRow, ULMenu As String, MenuName As String, MenuKeyName As String, CurrentMenuKeyName As String, CurrentURL As String) As String
+        If MenuKeyName = CurrentMenuKeyName Then
+            ULMenu &= "<li class='active'>"
+        Else
+            ULMenu &= "<li>"
+        End If
+        ULMenu &= "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown'>" & MenuName & " <b class='caret'></b></a><ul class='dropdown-menu'>"
+        For Each dr In row
+            If MenuKeyName = dr("Menu_PK") Then
+                ULMenu &= "<li class='active'>"
+            Else
+                ULMenu &= "<li>"
+            End If
+            ULMenu &= "<a href='" & dr("MenuURL") & "' >" & dr("MenuName") & "</a></li>"
+        Next
+        ULMenu &= "</ul></li>"
+        Return ULMenu
+    End Function
+
+    Function getIconURL()
+        If Session("security") = "U" Then
+            Return " <a href='../RESEARCH_REGISTER/UserPage.aspx'><b class='iconB-user'></b></a>"
+        Else
+            Return " <a href='../ADMIN/'><b class='iconB-user'></b></a>"
+        End If
+    End Function
+
+    Protected Sub btEditMode_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btEditMode.Click
+        checkMode()
+    End Sub
+    Sub checkMode()
+        If Session("EditMode") = False Then
+            Session("EditMode") = True
+            btEditMode.Text = "EditMode = ON"
+        Else
+            Session("EditMode") = False
+            btEditMode.Text = "EditMode = OFF"
+        End If
+    End Sub
+End Class
+

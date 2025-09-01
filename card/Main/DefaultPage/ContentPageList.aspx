@@ -1,0 +1,58 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageBootstrap.master" AutoEventWireup="false" CodeFile="ContentPageList.aspx.vb" Inherits="Main_DefaultPage_ContentPageList" %>
+
+<%@ Register assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentHeader" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="itemID" Width="100%">
+        <Columns>
+            <dx:GridViewCommandColumn VisibleIndex="0" Width="20px">
+                <DeleteButton Visible="True">
+                </DeleteButton>
+            </dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="itemID" ReadOnly="True" VisibleIndex="1" Width="20px">
+                <EditFormSettings Visible="False" />
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="title" VisibleIndex="2">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="createDate" Visible="False" VisibleIndex="3">
+            </dx:GridViewDataDateColumn>
+            <dx:GridViewDataTextColumn FieldName="createBy" VisibleIndex="4" Width="50px">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataMemoColumn FieldName="contentBody" Visible="False" VisibleIndex="5">
+                <EditFormSettings Visible="True" />
+            </dx:GridViewDataMemoColumn>
+            <dx:GridViewDataTextColumn FieldName="modifyBy" Visible="False" VisibleIndex="6">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="expireDate" Visible="False" VisibleIndex="7">
+            </dx:GridViewDataDateColumn>
+        </Columns>
+    </dx:ASPxGridView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" DeleteCommand="DELETE FROM [MY_CONTENT] WHERE [itemID] = @itemID" InsertCommand="INSERT INTO [MY_CONTENT] ([title], [createDate], [createBy], [contentBody], [modifyBy], [expireDate]) VALUES (@title, @createDate, @createBy, @contentBody, @modifyBy, @expireDate)" SelectCommand="SELECT [itemID], [title], [createDate], [createBy], [contentBody], [modifyBy], [expireDate] FROM [MY_CONTENT]" UpdateCommand="UPDATE [MY_CONTENT] SET [title] = @title, [createDate] = @createDate, [createBy] = @createBy, [contentBody] = @contentBody, [modifyBy] = @modifyBy, [expireDate] = @expireDate WHERE [itemID] = @itemID">
+        <DeleteParameters>
+            <asp:Parameter Name="itemID" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="title" Type="String" />
+            <asp:Parameter Name="createDate" Type="DateTime" />
+            <asp:Parameter Name="createBy" Type="String" />
+            <asp:Parameter Name="contentBody" Type="String" />
+            <asp:Parameter Name="modifyBy" Type="String" />
+            <asp:Parameter Name="expireDate" Type="DateTime" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="title" Type="String" />
+            <asp:Parameter Name="createDate" Type="DateTime" />
+            <asp:Parameter Name="createBy" Type="String" />
+            <asp:Parameter Name="contentBody" Type="String" />
+            <asp:Parameter Name="modifyBy" Type="String" />
+            <asp:Parameter Name="expireDate" Type="DateTime" />
+            <asp:Parameter Name="itemID" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+</asp:Content>
+

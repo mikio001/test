@@ -1,0 +1,107 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageAUTH.master" AutoEventWireup="false" CodeFile="ST2_ListMenu.aspx.vb" Inherits="Main_ST2_Menu" %>
+
+<%@ Register assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<%@ Register assembly="DevExpress.Web.ASPxTreeList.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxTreeList" tagprefix="dx" %>
+
+
+<%@ Register assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx1" %>
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+     </asp:ScriptManager>  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" 
+                CssFilePath="~/App_Themes/DevEx/{0}/styles.css" CssPostfix="DevEx" 
+                DataSourceID="SqlDataSource1" KeyFieldName="Menu_PK" 
+                ParentFieldName="ParentField" PreviewFieldName="PreviewField" Width="100%" ClientInstanceName="ASPxTreeList" Theme="Moderno" >
+                <SettingsBehavior AllowFocusedNode="True" AutoExpandAllNodes="True" />
+                <SettingsEditing AllowNodeDragDrop="True" />
+                <Columns>
+                    <dx:TreeListTextColumn FieldName="MenuName" ShowInCustomizationForm="True" 
+                        VisibleIndex="0" Width="300px">
+                    </dx:TreeListTextColumn>
+                    <dx:TreeListTextColumn FieldName="MenuURL" ShowInCustomizationForm="True" 
+                        VisibleIndex="1">
+                    </dx:TreeListTextColumn>
+                    <dx:TreeListTextColumn FieldName="AllowShow" VisibleIndex="3">
+                    </dx:TreeListTextColumn>
+                    <dx:TreeListCommandColumn ShowInCustomizationForm="True" VisibleIndex="4">
+                        <EditButton Visible="True">
+                        </EditButton>
+                        <NewButton Visible="True">
+                        </NewButton>
+                        <DeleteButton Visible="True">
+                        </DeleteButton>
+                    </dx:TreeListCommandColumn>
+                    <dx:TreeListTextColumn FieldName="menuIndex" SortIndex="0" 
+                        SortOrder="Ascending" Visible="False" VisibleIndex="2">
+                    </dx:TreeListTextColumn>
+                    <dx:TreeListTextColumn FieldName="HideLogin" VisibleIndex="5">
+                    </dx:TreeListTextColumn>
+                </Columns>
+                <Settings SuppressOuterGridLines="True" />
+                <Images SpriteCssFilePath="~/App_Themes/DevEx/{0}/sprite.css">
+                    <LoadingPanel Url="~/App_Themes/DevEx/TreeList/Loading.gif">
+                    </LoadingPanel>
+                </Images>
+                <Styles CssFilePath="~/App_Themes/DevEx/{0}/styles.css" CssPostfix="DevEx">
+                    <LoadingPanel ImageSpacing="5px">
+                    </LoadingPanel>
+                </Styles>
+                <StylesEditors ButtonEditCellSpacing="0">
+                </StylesEditors>
+            </dx:ASPxTreeList>
+            <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Up" AutoPostBack="False">
+                <ClientSideEvents CheckedChanged="function(s, e) {
+	ASPxTreeList.PerformCallback('U');
+}" />
+            </dx:ASPxButton>
+            <dx:ASPxButton ID="ASPxButton3" runat="server" Text="Down" AutoPostBack="False">
+                <ClientSideEvents CheckedChanged="function(s, e) {
+	ASPxTreeList.PerformCallback('D');
+}" />
+            </dx:ASPxButton>
+        </ContentTemplate>
+     </asp:UpdatePanel>
+     
+     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+         ConnectionString="<%$ ConnectionStrings:MAINDB %>" 
+         DeleteCommand="DELETE FROM [MY_LISTMENU] WHERE [Menu_PK] = @Menu_PK" 
+         InsertCommand="INSERT INTO [MY_LISTMENU] ([MenuURL], [MenuName], [ParentField], [menuIndex],[PreviewField],[AllowShow],HideLogin) VALUES (@MenuURL, @MenuName, @ParentField, @menuIndex,@PreviewField,@AllowShow,@HideLogin)" 
+         SelectCommand="SELECT * FROM [MY_LISTMENU]" 
+         
+        UpdateCommand="UPDATE [MY_LISTMENU] SET [MenuURL] = @MenuURL, [MenuName] = @MenuName, [ParentField] = @ParentField,[AllowShow]=@AllowShow,[PreviewField]=@PreviewField, [menuIndex] = @menuIndex,HideLogin=@HideLogin WHERE [Menu_PK] = @Menu_PK">
+         <DeleteParameters>
+             <asp:Parameter Name="Menu_PK" Type="Int32" />
+         </DeleteParameters>
+         <InsertParameters>
+             <asp:Parameter Name="MenuURL" Type="String" />
+             <asp:Parameter Name="MenuName" Type="String" />
+             <asp:Parameter Name="ParentField" Type="Int32" />
+             <asp:Parameter Name="menuIndex" Type="Int32" />
+<asp:Parameter Name="PreviewField" Type="Int32" />
+<asp:Parameter Name="AllowShow" Type="String" />
+             <asp:Parameter Name="HideLogin" />
+         </InsertParameters>
+         <UpdateParameters>
+             <asp:Parameter Name="MenuURL" Type="String" />
+             <asp:Parameter Name="MenuName" Type="String" />
+             <asp:Parameter Name="ParentField" Type="Int32" />
+<asp:Parameter Name="AllowShow" Type="String" />
+             <asp:Parameter Name="PreviewField" Type="Int32" />
+             <asp:Parameter Name="menuIndex" Type="Int32" />
+             <asp:Parameter Name="HideLogin" />
+             <asp:Parameter Name="Menu_PK" Type="Int32" />
+         </UpdateParameters>
+     </asp:SqlDataSource>
+                </asp:Content>
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentBanner">
+</asp:Content>
+
+

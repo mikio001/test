@@ -1,0 +1,23 @@
+﻿Imports DevExpress.Web
+
+Partial Class zulu_cms_contents_SearchResult
+    Inherits System.Web.UI.UserControl
+
+    Public Property ContentReaderPageUrl As String = "~/ContentReader.aspx?itemID={0}"
+    Public Property Target As String = "_blank"
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        With CType(resultGrid.Columns(0), GridViewDataHyperLinkColumn).PropertiesHyperLinkEdit
+            .NavigateUrlFormatString = ContentReaderPageUrl
+            .Target = Target
+        End With
+
+        Dim k As String = Request.QueryString("k")
+        'Response.Write(k)
+        If Not String.IsNullOrEmpty(k) Then
+
+            SqlDataSource1.SelectParameters("keyword").DefaultValue = "'" & k & "'"
+            resultGrid.DataBind()
+        End If
+    End Sub
+End Class

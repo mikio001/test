@@ -1,0 +1,29 @@
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="CheckMasterPage.aspx.vb" Inherits="Main_DefaultPage_CheckMasterPage" %>
+
+
+<%@ Register Assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../bootmetro-0.6.0/content/css/bootstrap.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+       <form id="form2" runat="server">
+    <div>
+     <h1>Hello, world!
+        </h1>
+        <a href="#" class="btn btn-primary btn-large">Learn more »</a><dx:ASPxTextBox ID="ASPxTextBox1" runat="server" Width="170px" ></dx:ASPxTextBox>
+        <dx:ASPxButton ID="ASPxButton1" runat="server" Text="ASPxButton" CssClass="btn btn-primary btn-large" ></dx:ASPxButton>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../bootmetro-0.6.0/scripts/bootstrap.min.js"></script>
+    </div>
+    </form>
+   
+    
+  </body>
+</html>

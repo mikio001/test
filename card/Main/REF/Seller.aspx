@@ -1,0 +1,69 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageAUTH.master" AutoEventWireup="false" CodeFile="Seller.aspx.vb" Inherits="Main_COFFEE_ManageTable" %>
+
+<%@ Register assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBanner" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="SellerID" Theme="Moderno" Width="100%">
+      <SettingsCommandButton>
+            <NewButton Text="เพิ่ม">
+            </NewButton>
+            <UpdateButton Text="บันทึก">
+            </UpdateButton>
+            <CancelButton Text="ยกเลิก">
+            </CancelButton>
+            <EditButton Text="แก้ไข">
+            </EditButton>
+            <DeleteButton Text="ลบ">
+            </DeleteButton>
+        </SettingsCommandButton>
+            <SettingsPopup>
+            <EditForm HorizontalAlign="WindowCenter" Modal="True" VerticalAlign="WindowCenter" />
+        </SettingsPopup>
+        <Columns>
+            <dx:GridViewCommandColumn ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0" Width="100px">
+            </dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="SellerID" ReadOnly="True" Visible="False" VisibleIndex="1" ShowInCustomizationForm="True">
+                <editformsettings visible="False" />
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="ชื่อร้านค้า" FieldName="SellerName" VisibleIndex="2" ShowInCustomizationForm="True">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataMemoColumn Caption="ที่อยู่" FieldName="Address" VisibleIndex="3">
+                <PropertiesMemoEdit Height="100px">
+                </PropertiesMemoEdit>
+            </dx:GridViewDataMemoColumn>
+            <dx:GridViewDataMemoColumn Caption="หมายเหตุ" FieldName="Remark" VisibleIndex="4">
+                <PropertiesMemoEdit Height="100px">
+                </PropertiesMemoEdit>
+            </dx:GridViewDataMemoColumn>
+        </Columns>
+        <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm">
+        </SettingsEditing>
+        <SettingsBehavior ConfirmDelete="True" />
+    </dx:ASPxGridView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" DeleteCommand="DELETE FROM [REF_SELLER] WHERE [SellerID] = @SellerID" InsertCommand="INSERT INTO [REF_SELLER] ([SellerName], [Address], [Remark]) VALUES (@SellerName, @Address, @Remark)" SelectCommand="SELECT * FROM [REF_SELLER]" UpdateCommand="UPDATE [REF_SELLER] SET [SellerName] = @SellerName, [Address] = @Address, [Remark] = @Remark WHERE [SellerID] = @SellerID">
+        <DeleteParameters>
+            <asp:Parameter Name="SellerID" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="SellerName" Type="String" />
+            <asp:Parameter Name="Address" Type="String" />
+            <asp:Parameter Name="Remark" Type="String" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="SellerName" Type="String" />
+            <asp:Parameter Name="Address" Type="String" />
+            <asp:Parameter Name="Remark" Type="String" />
+            <asp:Parameter Name="SellerID" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentHeader" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentFooter" Runat="Server">
+</asp:Content>
+

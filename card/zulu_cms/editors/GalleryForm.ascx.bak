@@ -1,0 +1,81 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="GalleryForm.ascx.vb" Inherits="zulu_cms_editors_NewsAdd" %><%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxHtmlEditor.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxHtmlEditor" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxSpellChecker.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxSpellChecker" tagprefix="dx" %>
+<%@ Register assembly="Zulu" namespace="Zulu.UI" tagprefix="cc1" %>
+<table cellpadding="0" cellspacing="2" class="text">
+<tr>
+<td>หัวเรื่อง:</td>
+<td>
+    <dx:ASPxTextBox ID="newsTitle" runat="server" MaxLength="255" Width="400px">
+        <ValidationSettings>
+            <RequiredField ErrorText="โปรดกรอก" IsRequired="True" />
+        </ValidationSettings>
+    </dx:ASPxTextBox>
+    </td>
+</tr>
+<tr>
+<td>คำอธิบายหัวเรื่อง</td>
+<td>
+    <dx:ASPxTextBox ID="subtitle" runat="server" MaxLength="255" Width="400px">
+        <ValidationSettings>
+            <RequiredField ErrorText="โปรดกรอก" IsRequired="True" />
+        </ValidationSettings>
+    </dx:ASPxTextBox>
+    </td>
+</tr>
+<tr>
+<td>ลำดับการแสดง:</td>
+<td>
+    <dx:ASPxSpinEdit ID="seOrderNo" runat="server" Height="21px" Number="0" 
+        Width="60px" />
+    </td>
+</tr>
+<tr>
+<td>วันหมดอายุ</td>
+<td>
+    <dx:ASPxDateEdit ID="newsExpireDate" runat="server">
+        
+    </dx:ASPxDateEdit>
+    </td>
+</tr>
+<tr>
+<td>ประเภท:</td>
+<td>
+    <dx:ASPxComboBox ID="cmbContentType" runat="server" ClientIDMode="AutoID" 
+        DataSourceID="SqlDataSource1" SelectedIndex="0" TextField="name" 
+        ValueField="contentTypeID" ValueType="System.Int32">
+    </dx:ASPxComboBox>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ZuluDB %>" 
+        SelectCommand="SELECT * FROM [ZCMS_CONTENT_TYPE]"></asp:SqlDataSource>
+    </td>
+</tr>
+    <tr>
+<td>ภาพ:</td>
+<td>
+    <cc1:FileSelector ID="btnRefImg" runat="server" Width="400px">
+    </cc1:FileSelector>
+    </td>
+    </tr>
+<tr>
+<td>ไฟล์เอกสาร:</td>
+<td>
+    <cc1:FileSelector ID="btnRefUrl" runat="server" Width="400px">
+    </cc1:FileSelector>
+    </td>
+</tr>
+    <tr>
+<td valign="top" colspan="2">หรือ เนื้อหา:</td>
+    </tr>
+    <tr>
+<td valign="top" colspan="2">
+    <cc1:FckEditor ID="FckEditor1" runat="server" EnableFileUpload="True">
+    </cc1:FckEditor>
+    </td>
+    </tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+    &nbsp;</td>
+</tr>
+</table>

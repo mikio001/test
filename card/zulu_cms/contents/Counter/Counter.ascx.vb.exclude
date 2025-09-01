@@ -1,0 +1,42 @@
+Imports System.Data
+Imports System.Data.SqlClient
+
+Partial Class Counter_Counter
+    Inherits System.Web.UI.UserControl
+    '    Public ObjDB As New Code.AppConn
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Application.Lock()
+        If Session("countstart") <> True Then
+            Application("counter") = GetCounterValue()
+        End If
+        Dim counter As String = Application("counter")
+        Dim cou As String = ""
+        For i As Integer = counter.Length To 5
+            counter = "0" & counter
+        Next
+        For i As Integer = 0 To counter.Length - 1
+            Dim b = counter.Substring(i, 1)
+            cou = cou & "<img src='Counter/" & b & ".gif' />"
+        Next
+        Counterlbl.Text = cou
+        Application.UnLock()
+
+    End Sub
+    Private Function GetCounterValue() As Int32
+
+        Dim nCounter As Int32
+        Dim aDataTB As New DataTable
+        aDataTB = ObjDB.GetDataTable("Select * From tb_counter", "counter")
+
+        nCounter = aDataTB.Rows(0).Item(0)
+        nCounter += 1
+
+        Dim sql = "Update tb_counter set counter=" & nCounter
+        Dim b = ObjDB.Execute(sql)
+      
+
+        Session("countstart") = True
+        Return nCounter
+    End Function
+End Class

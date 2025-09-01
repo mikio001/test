@@ -1,0 +1,15 @@
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Data" Assembly="DevExpress.Data.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register TagPrefix="dxtc" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+
+<dxtc:ASPxTabControl runat="server" CssFilePath="~/App_Themes/iOS/{0}/styles.css" SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css" CssPostfix="iOS">
+    <Paddings Padding="2" PaddingLeft="5" PaddingRight="5" />
+    <TabStyle Height="43px">
+    </TabStyle>
+</dxtc:ASPxTabControl>
+
+<dxtc:ASPxTabControl runat="server"  CssFilePath="~/App_Themes/iOS/{0}/styles.css"
+    SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css" CssPostfix="TabBar" SkinID="TabBar"
+    RenderMode="Lightweight" Width="100%" TabAlign="Center" TabPosition="Bottom" >
+    <TabStyle Height="49px" HorizontalAlign="Center">
+    </TabStyle>
+</dxtc:ASPxTabControl>

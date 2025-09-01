@@ -1,0 +1,1 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ReaderControl.ascx.vb" Inherits="zulu_cms_ReaderControl" %>

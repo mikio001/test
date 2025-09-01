@@ -1,0 +1,9 @@
+<%@ Register assembly="DevExpress.Data.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Data" TagPrefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<dx:ASPxCallbackPanel runat="server" CssFilePath="~/App_Themes/iOS/{0}/styles.css" CssPostfix="iOS">
+    <LoadingPanelImage Url="~/App_Themes/iOS/Web/Loading.gif" />
+	<LoadingPanelStyle ImageSpacing="5" />
+</dx:ASPxCallbackPanel>
+

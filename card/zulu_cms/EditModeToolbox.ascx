@@ -1,0 +1,137 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="EditModeToolbox.ascx.vb"
+    Inherits="zulu_cms_EditModeToolbox" %>
+<%@ Register Assembly="Zulu" Namespace="Zulu.UI" TagPrefix="cc1" %>
+<%@ Register Assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Src="../zulu_web/LoginPopupControl.ascx" TagName="LoginPopupControl"
+    TagPrefix="uc1" %>
+
+
+
+
+    <style>
+        
+     #myModal .modal-dialog {
+      width: 90%;  
+      padding: 0;
+    }
+
+    #myModal .modal-content {
+ 
+    }
+    
+    </style>
+    <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+<cc1:DirectRender ID="DirectRender1" runat="server" />
+<dx:ASPxCallback ID="EditModeToolbox_Callback" runat="server" ClientInstanceName="EditModeToolbox_Callback">
+    <ClientSideEvents CallbackComplete="function(s,e){if(e.result=='1') document.location.reload(true);}" />
+</dx:ASPxCallback>
+<uc1:LoginPopupControl ID="LoginPopupControl1" runat="server" />
+
+<asp:Panel ID="editorPanel" runat="server" Visible="false"><div class="navbar navbar-inverse navbar-fixed-top animated bounceInDown" style="position:fixed; background-color:#4B0082" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">เครื่องมือแก้ไข</a>
+        </div>
+             <button type="button" class="btn btn-primary pull-right" style="margin-top: 25px"  onclick=" EditModeToolbox_Callback.PerformCallback('end')">ออกจากการแก้ไข</button>
+
+           <%If checkAdmin() Then%>
+                <button type="button" class="btn btn-primary pull-right" style="margin-top: 25px; margin-right:5px" onclick="window.open('~/zulu_cms/admin/Acl.aspx") & "','Admin','width=700,height=500');">แก้ไขสิทธิ์การแก้ไขเนื้อหา</button>
+                <%end if %>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li > 
+               
+            </li>
+            <li>
+             
+            </li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div></asp:Panel>
+<dx:ASPxPopupControl ID="editorPopup" runat="server" AutoUpdatePosition="True" CloseAction="None"
+    HeaderText="เครื่องมือแก้ไข" ShowCloseButton="False" ClientInstanceName="editorPopup"
+    AllowDragging="True">
+
+    <ContentCollection>
+        <dx:PopupControlContentControl runat="server" SupportsDisabledAttribute="True">
+            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">เครื่องมือแก้ไข</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+
+
+
+            <table>
+                <tr>
+                    <td>
+                       
+                    </td>
+                </tr>
+               
+              
+             
+            
+                <tr>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table>
+        </dx:PopupControlContentControl>
+    </ContentCollection>
+</dx:ASPxPopupControl>
+        <!-- Modal -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" style="z-index:999999999" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">EDIT MODE</h4>
+      </div>
+      <div class="modal-body">
+       <iframe  height="600px" id="editFrame" width="100%" style="border:none"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>

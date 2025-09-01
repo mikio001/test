@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetStaffInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStaffInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStaffInfoResult" type="tns:StaffInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StaffInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CitizenID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Faculty" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStaffExam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="examtype" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStaffExamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStaffExamResult" type="tns:ArrayOfStaffExam" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStaffExam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StaffExam" nillable="true" type="tns:StaffExam" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StaffExam">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStaffClass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStaffClassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStaffClassResult" type="tns:ArrayOfClassInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClassInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClassInfo" nillable="true" type="tns:ClassInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClassInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Month" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeacherName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DayOfWeek" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="StaffInfo" nillable="true" type="tns:StaffInfo" />
+      <s:element name="ArrayOfStaffExam" nillable="true" type="tns:ArrayOfStaffExam" />
+      <s:element name="ArrayOfClassInfo" nillable="true" type="tns:ArrayOfClassInfo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStaffInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStaffInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStaffInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStaffExam" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStaffExamResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStaffClass" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStaffClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffInfoHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:StaffInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="examtype" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStaffExam" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffInfoHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:StaffInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="examtype" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffExamHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStaffExam" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffClassHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:portType name="StaffServiceSoap">
+    <wsdl:operation name="GetStaffInfo">
+      <wsdl:input message="tns:GetStaffInfoSoapIn" />
+      <wsdl:output message="tns:GetStaffInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <wsdl:input message="tns:GetStaffExamSoapIn" />
+      <wsdl:output message="tns:GetStaffExamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <wsdl:input message="tns:GetStaffClassSoapIn" />
+      <wsdl:output message="tns:GetStaffClassSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StaffServiceHttpGet">
+    <wsdl:operation name="GetStaffInfo">
+      <wsdl:input message="tns:GetStaffInfoHttpGetIn" />
+      <wsdl:output message="tns:GetStaffInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <wsdl:input message="tns:GetStaffExamHttpGetIn" />
+      <wsdl:output message="tns:GetStaffExamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <wsdl:input message="tns:GetStaffClassHttpGetIn" />
+      <wsdl:output message="tns:GetStaffClassHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StaffServiceHttpPost">
+    <wsdl:operation name="GetStaffInfo">
+      <wsdl:input message="tns:GetStaffInfoHttpPostIn" />
+      <wsdl:output message="tns:GetStaffInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <wsdl:input message="tns:GetStaffExamHttpPostIn" />
+      <wsdl:output message="tns:GetStaffExamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <wsdl:input message="tns:GetStaffClassHttpPostIn" />
+      <wsdl:output message="tns:GetStaffClassHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StaffServiceSoap" type="tns:StaffServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStaffInfo">
+      <soap:operation soapAction="http://tempuri.org/GetStaffInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <soap:operation soapAction="http://tempuri.org/GetStaffExam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <soap:operation soapAction="http://tempuri.org/GetStaffClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StaffServiceSoap12" type="tns:StaffServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStaffInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetStaffInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <soap12:operation soapAction="http://tempuri.org/GetStaffExam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <soap12:operation soapAction="http://tempuri.org/GetStaffClass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StaffServiceHttpGet" type="tns:StaffServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetStaffInfo">
+      <http:operation location="/GetStaffInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <http:operation location="/GetStaffExam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <http:operation location="/GetStaffClass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StaffServiceHttpPost" type="tns:StaffServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetStaffInfo">
+      <http:operation location="/GetStaffInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffExam">
+      <http:operation location="/GetStaffExam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffClass">
+      <http:operation location="/GetStaffClass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StaffService">
+    <wsdl:port name="StaffServiceSoap" binding="tns:StaffServiceSoap">
+      <soap:address location="https://ws.up.ac.th/mobile/StaffService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StaffServiceSoap12" binding="tns:StaffServiceSoap12">
+      <soap12:address location="https://ws.up.ac.th/mobile/StaffService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StaffServiceHttpGet" binding="tns:StaffServiceHttpGet">
+      <http:address location="https://ws.up.ac.th/mobile/StaffService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StaffServiceHttpPost" binding="tns:StaffServiceHttpPost">
+      <http:address location="https://ws.up.ac.th/mobile/StaffService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

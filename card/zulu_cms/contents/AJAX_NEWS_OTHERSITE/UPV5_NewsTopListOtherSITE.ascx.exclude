@@ -1,0 +1,28 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="UPV5_NewsTopListOtherSITE.ascx.vb" Inherits="zulu_cms_contents_NewsTopList" %>
+<%@ Register Assembly="Zulu" Namespace="Zulu.UI" TagPrefix="cc1" %>
+
+<%@ Register src="../StartEditorToolbox.ascx" tagname="StartEditorToolbox" tagprefix="uc1" %>
+<%@ Register src="../EndEditorToolbox.ascx" tagname="EndEditorToolbox" tagprefix="uc2" %>
+<%@ Register assembly="DevExpress.Web.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxLoadingPanel" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPanel" tagprefix="dx" %>
+<table style="width: 100%">
+    <tr>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td><cc1:DirectRender ID="NewsTopList" runat="server" />
+
+
+            
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+

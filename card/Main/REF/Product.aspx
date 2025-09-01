@@ -1,0 +1,131 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageAUTH.master" AutoEventWireup="false" CodeFile="Product.aspx.vb" Inherits="Main_COFFEE_ManageTable" %>
+
+<%@ Register assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBanner" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+      <button type="button" class="btn btn-primary " style="margin-bottom:10px; margin-right:14px;" onclick="window.open('print/rptProduct.aspx', '_blank');"> <span class="glyphicon glyphicon-print"></span> พิมพ์รายงานสินค้าคงเหลือ</button>
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ProductID" Theme="Moderno" Width="100%">
+         <SettingsCommandButton>
+            <NewButton Text="เพิ่ม">
+            </NewButton>
+            <UpdateButton Text="บันทึก">
+            </UpdateButton>
+            <CancelButton Text="ยกเลิก">
+            </CancelButton>
+            <EditButton Text="แก้ไข">
+            </EditButton>
+            <DeleteButton Text="ลบ">
+            </DeleteButton>
+        </SettingsCommandButton>
+         <SettingsPopup>
+            <EditForm HorizontalAlign="WindowCenter" Modal="True" VerticalAlign="WindowCenter" />
+        </SettingsPopup>
+        <Columns>
+            <dx:GridViewCommandColumn ButtonType="Button" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="0">
+            </dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="ProductID" ReadOnly="True" Visible="False" VisibleIndex="1">
+                <editformsettings visible="False" />
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="รหัส" FieldName="ProductCode" VisibleIndex="2" Width="100px">
+                <PropertiesTextEdit Width="100px">
+                </PropertiesTextEdit>
+              
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="ชื่อรายการ" FieldName="ProductName" VisibleIndex="3">
+                <PropertiesTextEdit>
+                    <ValidationSettings>
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="รหัสบาร์โค๊ด" FieldName="Barcode" VisibleIndex="4">
+                <PropertiesTextEdit>
+                    <ValidationSettings ErrorDisplayMode="ImageWithText">
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataComboBoxColumn Caption="ประเภท" FieldName="ProductTypeID" VisibleIndex="8">
+                <PropertiesComboBox DataSourceID="REF_TYPE" TextField="ProductTypeName" ValueField="ProductTypeID">
+                    <ValidationSettings>
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataComboBoxColumn Caption="หน่วยนับ" FieldName="UnitID" VisibleIndex="9">
+                <PropertiesComboBox DataSourceID="REF_UNIT" TextField="UnitName" ValueField="UnitID">
+                    <ValidationSettings>
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataSpinEditColumn Caption="จำนวนขั้นต่ำ" FieldName="MinVolumn" VisibleIndex="5" Width="50px" Visible="False">
+                <PropertiesSpinEdit DisplayFormatString="g" NullDisplayText="0" Width="100px">
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataMemoColumn Caption="หมายเหตุ" FieldName="Remark" VisibleIndex="10">
+                <PropertiesMemoEdit Height="50px">
+                </PropertiesMemoEdit>
+            </dx:GridViewDataMemoColumn>
+            <dx:GridViewDataTextColumn Caption="จำนวนคงเหลือ" FieldName="BalanceVolumn" VisibleIndex="6" Width="50px">
+                <EditFormSettings Visible="False" />
+            </dx:GridViewDataTextColumn>
+          
+            <dx:GridViewDataSpinEditColumn Caption="ราคา/หน่วย" FieldName="Price" VisibleIndex="7">
+                <PropertiesSpinEdit AllowMouseWheel="False" DecimalPlaces="2" DisplayFormatString="###,##0.00" NumberFormat="Custom">
+                    <SpinButtons ClientVisible="False">
+                    </SpinButtons>
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
+          
+        </Columns>
+        <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm">
+        </SettingsEditing>
+        <Settings ShowHeaderFilterButton="True" />
+        <SettingsBehavior ConfirmDelete="True" />
+    </dx:ASPxGridView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" DeleteCommand="DELETE FROM [REF_Product] WHERE [ProductID] = @ProductID" InsertCommand="INSERT INTO REF_Product(ProductCode, ProductName, Barcode, MinVolumn, ProductTypeID, UnitID, Remark, CreateDate, CreateUser, BalanceVolumn, Price) VALUES (@ProductCode, @ProductName, @Barcode, @MinVolumn, @ProductTypeID, @UnitID, @Remark, GETDATE(), @CreateUser, 0, @Price)" SelectCommand="SELECT * FROM [REF_Product]" UpdateCommand="UPDATE REF_Product SET ProductCode = @ProductCode, ProductName = @ProductName, Barcode = @Barcode, MinVolumn = @MinVolumn, ProductTypeID = @ProductTypeID, UnitID = @UnitID, Remark = @Remark, LastDate = GETDATE(), LastUser = @LastUser, Price = @Price WHERE (ProductID = @ProductID)">
+        <DeleteParameters>
+            <asp:Parameter Name="ProductID" />
+        </DeleteParameters>
+        <InsertParameters>
+           <asp:Parameter Name="ProductCode" />
+            <asp:Parameter Name="ProductName" />
+            <asp:Parameter Name="Barcode" Type="String" />
+            <asp:Parameter Name="MinVolumn" Type="Int32" DefaultValue="0" />
+            <asp:Parameter Name="ProductTypeID" />
+            <asp:Parameter Name="UnitID" Type="Int32" />
+            <asp:Parameter Name="Remark" Type="String" />
+            <asp:SessionParameter SessionField="username" Name="CreateUser" Type="String" />  
+            <asp:Parameter Name="Price" />
+        </InsertParameters>
+        <UpdateParameters>
+           <asp:Parameter Name="ProductCode" />
+            <asp:Parameter Name="ProductName" />
+            <asp:Parameter Name="Barcode" Type="String" />
+            <asp:Parameter Name="MinVolumn" Type="Int32" DefaultValue="0" />
+            <asp:Parameter Name="ProductTypeID" />
+            <asp:Parameter Name="UnitID" Type="Int32" />
+            <asp:Parameter Name="Remark" Type="String" />         
+            <asp:SessionParameter SessionField="username" Name="LastUser" Type="String" />           
+            <asp:Parameter Name="Price" />
+            <asp:Parameter Name="ProductID" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+
+
+    <asp:SqlDataSource ID="REF_TYPE" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [REF_ProductTYPE]">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="REF_UNIT" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [REF_UNIT]">
+    </asp:SqlDataSource>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentHeader" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentFooter" Runat="Server">
+</asp:Content>
+

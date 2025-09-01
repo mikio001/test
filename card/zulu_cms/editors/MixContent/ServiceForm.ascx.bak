@@ -1,0 +1,73 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ServiceForm.ascx.vb" Inherits="zulu_cms_editors_NewsAdd" %><%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxHtmlEditor.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxHtmlEditor" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxSpellChecker.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxSpellChecker" tagprefix="dx" %>
+<%@ Register assembly="Zulu" namespace="Zulu.UI" tagprefix="cc1" %>
+ <script type="text/javascript">
+    // <![CDATA[
+     function ShowDoc() {
+         var url = btnRefUrl.GetText();
+         window.open(url);
+     }
+    // ]]> 
+    </script>
+
+<table cellpadding="0" cellspacing="2" class="text">
+<tr>
+<td>Service Name:</td>
+<td>
+    <dx:ASPxTextBox ID="newsTitle" runat="server" MaxLength="255" Width="400px">
+        <ValidationSettings>
+            <RequiredField ErrorText="โปรดกรอก" IsRequired="True" />
+        </ValidationSettings>
+    </dx:ASPxTextBox>
+    </td>
+</tr>
+<tr>
+<td>คำอธิบาย :</td>
+<td>
+    <dx:ASPxTextBox ID="newsSubTitle" runat="server" MaxLength="500" Width="400px" 
+        Height="70px">
+        
+    </dx:ASPxTextBox>
+    </td>
+</tr>
+<tr>
+<td>ลำดับการแสดง:</td>
+<td>
+    <dx:ASPxSpinEdit ID="seOrderNo" runat="server" Height="21px" Number="0" 
+        Width="60px" />
+    </td>
+</tr>
+<tr>
+<td>ภาพประกอบ:</td>
+<td>
+    <cc1:FileSelector ID="btnRefImg" runat="server" Width="400px">
+    </cc1:FileSelector>
+    </td>
+</tr>
+<tr>
+<td>Link ไปยังระบบ:</td>
+
+<td><table><tr><td> <cc1:FileSelector ID="btnRefUrl" runat="server" Width="400px" 
+        ClientInstanceName="btnRefUrl">
+    </cc1:FileSelector></td><td>
+        <dx:ASPxButton ID="ASPxButton1" runat="server" 
+            Text="Preview" Height="12px" ClientIDMode="AutoID" Font-Size="X-Small">
+            <ClientSideEvents Click="function(s, e) {
+	ShowDoc();
+}" />
+        </dx:ASPxButton>
+        </td></tr></table>
+   
+    </td>
+</tr>
+<tr>
+<td valign="top" colspan="2">คำอธิบายอื่นๆ:</td>
+</tr>
+<tr>
+<td valign="top" colspan="2">
+    <cc1:FckEditor ID="FckEditor1" runat="server" EnableFileUpload="True">
+    </cc1:FckEditor>
+    </td>
+</tr>
+</table>

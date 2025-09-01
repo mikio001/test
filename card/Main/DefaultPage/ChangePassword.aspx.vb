@@ -1,0 +1,30 @@
+﻿
+Partial Class Main_DefaultPage_ChangePassword
+    Inherits System.Web.UI.Page
+
+    Protected Sub ASPxCallbackPanel1_Callback(sender As Object, e As DevExpress.Web.CallbackEventArgsBase) Handles ASPxCallbackPanel1.Callback
+     
+        If ASPxTextBox2.Text <> ASPxTextBox3.Text Then
+            ASPxLabel1.Text = "<p class='alert alert-danger'>กรุณากรอกรหัสผ่านให้ถูกต้อง</p>"
+            'ASPxLabel1.CssClass = "alert alert-danger"
+        ElseIf ASPxTextBox2.Text.Length < 4 Then
+            ASPxLabel1.Text = "<p class='alert alert-danger'>กรุณากำหนดรหัสผ่าน 4 ตัวอักษรขึ้นไป</p>"
+            '  ASPxLabel1.CssClass = "alert alert-danger"
+        Else
+            Dim db = Zulu.Data.PlatformFactory.GetPlatform("MAINDB", True, False)
+            Dim oldpass = db.GetValue("select password from MY_PERMISSION_USER where username=@username", db.NewParam("username", Session("username")))
+            If oldpass = ASPxTextBox1.Text Then
+                db.Execute("update MY_PERMISSION_USER set password=@password  where username=@username", db.NewParam("username", Session("username")), db.NewParam("password", ASPxTextBox2.Text))
+                ASPxLabel1.Text = "<p class='alert alert-success'>เปลี่ยนรหัสผ่านเรียบร้อยแล้ว</p>"
+                '   ASPxLabel1.CssClass = "alert alert-success"
+            Else
+                ASPxLabel1.Text = "<p class='alert alert-danger'>รหัสผ่านเดิมไม่ถูกต้อง</p>"
+                '   ASPxLabel1.CssClass = "alert alert-danger"
+            End If
+            db.Close()
+
+        End If
+    End Sub
+
+  
+End Class

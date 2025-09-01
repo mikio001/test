@@ -1,0 +1,81 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/zulu_web/VCMasterPage.master" AutoEventWireup="false"
+    CodeFile="Editor.aspx.vb" Inherits="zulu_cms_Editor" %>
+
+<%@ Register Assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="script.js" type="text/javascript"></script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="pageHeader">
+        <div class="pageHeaderIcon">
+            <asp:Image ID="pageIcon" ImageAlign="AbsMiddle" runat="server" ImageUrl="~/zulu_web/images/page_icon.gif" /></div>
+        <div class="pageHeaderTitle">
+            <asp:Literal ID="PageTitle" runat="server" Mode="PassThrough" Text="Content Editor"></asp:Literal>
+        </div>
+    </div>
+    <table cellpadding="0" cellspacing="2" style="padding-left: 6px;">
+        <tr>
+            <td>
+               
+                <dx:ASPxButton ID="btnAdd" runat="server" Text="เพิ่ม" Visible="False">
+                    <Image Url="~/zulu_web/images/add.gif">
+                    </Image>
+                </dx:ASPxButton>
+            </td>
+            <td>
+                <dx:ASPxButton ID="btnEdit" runat="server" Text="แก้ไข" Visible="False">
+                    <Image Url="~/zulu_web/images/edit.gif">
+                    </Image>
+                </dx:ASPxButton>
+            </td>
+            <td>
+                <dx:ASPxButton ID="btnDelete" runat="server" Text="ลบ" Visible="False">
+                    <Image Url="~/zulu_web/images/delete.gif">
+                    </Image>
+                </dx:ASPxButton>
+            </td>
+            <td>
+                <dx:ASPxButton ID="btnSave" runat="server" Text="บันทึก" Visible="False">
+                    <Image Url="~/zulu_web/images/ok.gif">
+                    </Image>
+                </dx:ASPxButton>
+            </td>
+            <td>
+                <dx:ASPxButton ID="btnAcl" runat="server" Text="แก้ไขสิทธิ์" Visible="False">
+                    <Image Url="~/zulu_web/images/users.gif">
+                    </Image>
+                </dx:ASPxButton>
+            </td>
+            <td>
+                <dx:ASPxButton ID="btnCancel" runat="server" Text="ปิด" AutoPostBack="False" CausesValidation="False"
+                    UseSubmitBehavior="False">
+                    <Image Url="~/zulu_web/images/cancel.gif">
+                    </Image>
+                    <ClientSideEvents Click="function(s,e){zulu_cms_closeEditor();}" />
+                </dx:ASPxButton>
+            </td>
+        </tr>
+    </table>
+    <div class="viewFrame">
+        <table class="viewFrameHeader" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="viewFrameHeaderLeft">
+                </td>
+                <td class="viewFrameHeaderTitle">
+                    
+                </td>
+                <td class="viewFrameHeaderRight">
+                </td>
+            </tr>
+        </table>
+        <div class="viewFrameBody">
+            <div class="viewFrameNoToolbar">
+            </div>
+            <asp:Literal ID="ltMsg" runat="server" Mode="PassThrough"></asp:Literal>
+            <div>
+                <asp:PlaceHolder ID="EditorPlaceHolder" runat="server"></asp:PlaceHolder>
+            </div>
+        </div>
+    </div>
+</asp:Content>

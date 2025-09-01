@@ -1,0 +1,518 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPageAUTH.master" AutoEventWireup="false" CodeFile="item.aspx.vb" Inherits="Main_COFFEE_ManageTable" %>
+
+<%@ Register Assembly="DevExpress.Web.Bootstrap.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+        
+     <link href="../eternicode-bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+          <style type="text/css">
+
+          #md_show .modal-dialog {
+         width:50%}
+
+
+              .auto-style2 {
+                  width: 139px;
+              }
+
+
+              .auto-style3 {
+                  width: 142px;
+              }
+
+
+     </style>
+        
+     <script>
+
+
+
+         function getCheckbox() {
+           
+             var val = '';
+             $(':checkbox:checked').each(function (i) {
+                
+                     if ($(this).val() != undefined) {
+                     if (val != "") {
+                         val = val + ","
+                     }
+                     val = val + "'" + $(this).val() + "'";
+                         
+                 
+                 }
+                 
+             });
+             //    alert(val);
+           
+             prinData(val);
+
+
+
+         }
+
+         function prinData(data) {
+             var files = $("#Select1 option:selected").text();
+             if (data != "") {
+                // var param = { 'sid': data, 'sname': $("#lblstation").text(), 'files': files };
+                 window.open("Print/print_item1_img.aspx?id=" + data);
+
+
+             } else {
+                 alert("กรุณาเลือกข้อมูล");
+             }
+
+         }
+
+
+         function getCheckbox2() {
+
+             var val = '';
+             $(':checkbox:checked').each(function (i) {
+
+                 if ($(this).val() != undefined) {
+                     if (val != "") {
+                         val = val + ","
+                     }
+                     val = val + "'" + $(this).val() + "'";
+
+
+                 }
+
+             });
+             //    alert(val);
+
+             prinData2(val);
+
+
+
+         }
+
+         function prinData2(data) {
+             var files = $("#Select1 option:selected").text();
+             if (data != "") {
+                 // var param = { 'sid': data, 'sname': $("#lblstation").text(), 'files': files };
+                 window.open("Print/print_data.aspx?id=" + data);
+
+
+             } else {
+                 alert("กรุณาเลือกข้อมูล");
+             }
+
+         }
+
+
+
+
+
+         function toggle(oInput) {
+    var aInputs = document.getElementsByTagName('input');
+    for (var i=0;i<aInputs.length;i++) {
+        if (aInputs[i] != oInput) {
+            aInputs[i].checked = oInput.checked;
+        }
+    }
+}
+
+     </script>
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentBanner" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+   
+        <button type="button" class="btn btn-primary " style="margin-bottom:10px; margin-right:14px;" onclick="getCheckbox();"> <span class="glyphicon glyphicon-print"></span> รูปภาพ</button> 
+    <button type="button" class="btn btn-primary " style="margin-bottom:10px; margin-right:14px;" onclick="getCheckbox2();"> <span class="glyphicon glyphicon-print"></span> ข้อมูล</button>
+  <input type='checkbox' class='checkall'  onClick='toggle(this)' /><dx:ASPxComboBox ID="ASPxComboBox1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" SelectedIndex="0" TextField="item_status_name" ValueField="item_status">
+      </dx:ASPxComboBox>
+      <asp:Button ID="bntprint" runat="server" Text="ออกรายงาน" />
+      <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT [item_status_name], [item_status] FROM [item_statusTB]"></asp:SqlDataSource>
+                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID" Theme="Moderno" Width="100%" ClientInstanceName="ASPxGridView1">
+        <SettingsCommandButton>
+            <NewButton Text="เพิ่ม">
+            </NewButton>
+            <UpdateButton Text="บันทึก">
+            </UpdateButton>
+            <CancelButton Text="ยกเลิก">
+            </CancelButton>
+            <EditButton Text="แก้ไข">
+            </EditButton>
+            <DeleteButton Text="ลบ">
+            </DeleteButton>
+        </SettingsCommandButton>
+          <SettingsPopup>
+            <EditForm HorizontalAlign="WindowCenter" Modal="True" VerticalAlign="WindowCenter" />
+        </SettingsPopup>
+        <SettingsSearchPanel Visible="True" />
+        <Columns>
+              <dx:GridViewDataTextColumn Caption="เลือก" VisibleIndex="0" ShowInCustomizationForm="True">
+
+                <editformsettings visible="False" />
+                                    <dataitemtemplate>
+                                       <input id='checkbox<%#Eval("ASSETID")%>' class="form-control" name="selector[]" type="checkbox" value='<%#Eval("ASSETID")%>' />
+                                    </dataitemtemplate>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="หมายเลขครุภัณฑ์" FieldName="ASSETID" VisibleIndex="4" Width="100px" ShowInCustomizationForm="True">
+                <PropertiesTextEdit Width="100px">
+                </PropertiesTextEdit>
+              
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="NAME" ReadOnly="True" VisibleIndex="5" Caption="ชื่อ" ShowInCustomizationForm="True">
+<PropertiesTextEdit>
+    <ValidationSettings>
+        <RequiredField IsRequired="True" />
+    </ValidationSettings>
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="ผู้รับผิดชอบ" FieldName="TECHINFO2" VisibleIndex="12" ShowInCustomizationForm="True">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="view" VisibleIndex="1" ShowInCustomizationForm="True">
+                <EditFormSettings Visible="False" />
+                <DataItemTemplate>
+                    <button class='btn <%# getFile(Eval("ASSETID"))%>' onclick='txt_ID.SetValue(&#039;<%#Eval("ASSETID")%>&#039;);loadfile.PerformCallback();$(&#039;#md_show&#039;).modal(&#039;show&#039;);' type="button">
+                       <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    </button>
+         
+                </DataItemTemplate>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="ยี่ห้อ" FieldName="MAINTENANCEINFO1" VisibleIndex="8" Width="50px" ShowInCustomizationForm="True">
+            </dx:GridViewDataTextColumn>
+          
+            <dx:GridViewDataTextColumn Caption="โมเดล" VisibleIndex="9" FieldName="MODEL" ShowInCustomizationForm="True">
+                              <PropertiesTextEdit>
+                                  <ValidationSettings>
+                                      <RequiredField IsRequired="True" />
+                                  </ValidationSettings>
+                              </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+
+          
+            <dx:GridViewDataTextColumn Caption="S/N" FieldName="SERIALNUM" VisibleIndex="10" ShowInCustomizationForm="True">
+                <PropertiesTextEdit>
+                    <ValidationSettings>
+                        <RequiredField IsRequired="True" />
+                    </ValidationSettings>
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+          
+            <dx:GridViewDataTextColumn Caption="สถานที่" FieldName="location_new" VisibleIndex="11" ShowInCustomizationForm="True">
+                <PropertiesTextEdit Height="50px">
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
+          
+            <dx:GridViewDataComboBoxColumn Caption="สถานะ" FieldName="item_status" Visible="False" VisibleIndex="13">
+                <PropertiesComboBox DataSourceID="REF_TYPE" DropDownStyle="DropDown" EnableFocusedStyle="False" TextField="item_status_name" ValueField="item_status">
+                </PropertiesComboBox>
+                <EditFormSettings Visible="True" />
+                <DataItemTemplate>
+                   
+
+                
+                </DataItemTemplate>
+            </dx:GridViewDataComboBoxColumn>
+
+          
+              <dx:GridViewDataTextColumn Caption="edit" VisibleIndex="3" FieldName="item_status_name">
+                  <DataItemTemplate>
+                       <button class='btn ' onclick='txt_ID.SetValue(&#039;<%#Eval("ASSETID")%>&#039;);txtlocation.SetValue(&#039;<%#Eval("location_new")%>&#039;);$(&#039;#md_edit&#039;).modal(&#039;show&#039;);' type="button">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                  </DataItemTemplate>
+              </dx:GridViewDataTextColumn>
+
+          
+              <dx:GridViewDataTextColumn Caption="สถานะ" FieldName="item_status_name" VisibleIndex="14">
+              </dx:GridViewDataTextColumn>
+
+          
+              <dx:GridViewDataTextColumn Caption="/" VisibleIndex="2" FieldName="ck">
+                       <DataItemTemplate>
+                       <button class='btn ' onclick='txt_ID.SetValue(&#039;<%#Eval("ASSETID")%>&#039;);cbck.PerformCallback();ASPxGridView1.PerformCallback();' type="button">
+                    <span class="<%# ckicon(Eval("ASSETID"))%>"" aria-hidden="true"></span>
+                    </button>
+                  </DataItemTemplate>
+              </dx:GridViewDataTextColumn>
+
+          
+        </Columns>
+     
+        <SettingsPager PageSize="50">
+            <PageSizeItemSettings ShowAllItem="True" Visible="True">
+            </PageSizeItemSettings>
+        </SettingsPager>
+        <SettingsEditing EditFormColumnCount="1" Mode="PopupEditForm">
+        </SettingsEditing>
+        <Settings ShowHeaderFilterButton="True" ShowFilterRow="True" />
+        <SettingsBehavior ConfirmDelete="True" />
+    </dx:ASPxGridView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT View_ASSET.ASSETID, View_ASSET.ASSETGROUP, View_ASSET.NAME, View_ASSET.SERIALNUM, View_ASSET.MODEL, View_ASSET.QUANTITY, View_ASSET.GUARANTEEDATE, View_ASSET.UNITOFMEASURE, View_ASSET.MAINTENANCEINFO1, View_ASSET.UNITCOST, View_ASSET.IVZ_FSDEPARTMENTID, View_ASSET.TECHINFO1, View_ASSET.TECHINFO2, View_ASSET.item_status, item_statusTB.item_status_name, View_ASSET.ck, View_ASSET.location_new FROM View_ASSET INNER JOIN item_statusTB ON View_ASSET.item_status = item_statusTB.item_status">
+    </asp:SqlDataSource>
+
+    lo
+    <asp:SqlDataSource ID="REF_TYPE" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT [item_status], [item_status_name] FROM [item_statusTB]">
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="lean_TB" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT [lean], [lean_name] FROM [lean_TB]">
+    </asp:SqlDataSource>
+
+     <br />
+
+    <asp:SqlDataSource ID="typeim_is" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [REF_IM_IS_TB]">
+    </asp:SqlDataSource>
+       <dx:ASPxTextBox ID="txt_ID"  runat="server" ClientInstanceName="txt_ID" Width="170px">
+    </dx:ASPxTextBox>
+    <div class="modal face" id="mdReport" data-backdrop='static' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+      <div class="row"  style="  margin-top: 6px;">
+    <div class="col-md-3"> <label  class="col-sm-12 control-label" style="  margin-top: 6px;"> เลือกช่วงวันที่ </label></div>    <div class="col-sm-6 ">  
+        <div id="sandbox-container"><div class="input-daterange input-group" id="datepicker">
+               <asp:TextBox ID="DStart" ClientIDMode="Static" CssClass="form-control" runat="server"></asp:TextBox>
+    <span class="input-group-addon">to</span>
+   <asp:TextBox ID="DEnd" ClientIDMode="Static" CssClass="form-control" class="input-sm form-control" runat="server"></asp:TextBox>
+</div></div>
+   </div> 
+    </div>
+          <div class="row" style="padding-top:10px"><div class="col-md-offset-3 col-md-2"> <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.open('print/rptMaterial.aspx?DStart=' + $('#DStart').val() + '&DEnd='+$('#DEnd').val() + '&type='+ 'IM', '_blank')">พิมพ์รายงาน</button></div></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<%#Eval("MAINTENANCEINFO1")%>
+<div class="modal fade" id="md_show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="H2">รายละเอียดครุภัณฑ์</h4>
+      </div>
+      <div class="modal-body">
+          <dx:ASPxCallbackPanel ID="loadfile" runat="server" ClientInstanceName="loadfile" Width="100%">
+              <PanelCollection>
+<dx:PanelContent runat="server">
+  
+         
+            <div class="row">
+  <div class="col-md-4">
+
+<asp:DataList ID="DataList1" runat="server" DataKeyField="ID_ITEM" DataSourceID="SqlDataSource3" Width="100%">
+          <ItemTemplate>
+<div class="thumbnail">
+      <a href="/w3images/lights.jpg">
+        <img src="img/<%#Eval("ReciveFile") %>" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p> <%#Eval("item_status_name")%>  </p>
+               <p> <%#Eval("detail")%> </p>
+        </div>
+      </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+          </ItemTemplate>
+      </asp:DataList>
+    
+
+      
+
+      <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT ITEM_TB.ID_ITEM, ITEM_TB.item_status, ITEM_TB.ReciveFile, item_statusTB.item_status_name, ITEM_TB.detail FROM ITEM_TB INNER JOIN item_statusTB ON ITEM_TB.item_status = item_statusTB.item_status WHERE (ITEM_TB.ID_ITEM = @ID_ITEM)">
+          <SelectParameters>
+              <asp:ControlParameter ControlID="txt_ID" Name="ID_ITEM" PropertyName="Text" Type="String" />
+          </SelectParameters>
+      </asp:SqlDataSource>
+    
+
+      
+
+  </div>
+  <div class="col-md-8">
+
+      <asp:DataList ID="DataList3" runat="server" DataSourceID="SqlDataitem" Width="100%">
+
+          <ItemTemplate>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="auto-style2">หมายเลขสินทรัพย์ถาวร</th>
+      <th >    <label><%#Eval("ASSETID")%></label></th>
+        </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" class="auto-style2">ชื่อ</th>
+    <th ><label><%#Eval("NAME")%></label></th>
+    
+     
+    </tr>
+    
+    <tr>
+      <th scope="row" class="auto-style2">หน่วยวัด</th>
+       <th ><label><%#Eval("UNITOFMEASURE")%></label></th>
+      
+     
+    </tr>
+      <tr>
+          <th class="auto-style2" scope="row">ต้นทุนต่อหน่วย</th>
+          <th ><label><%#Eval("UNITCOST")%></label></th>
+      </tr>
+      <tr>
+          <th class="auto-style2" scope="row">ยี่ห้อ</th>
+          <th ><label><%#Eval("MAINTENANCEINFO1")%></label></th>
+      </tr>
+      <tr>
+          <th class="auto-style2" scope="row">โมเดล</th>
+          <th ><label><%#Eval("MODEL")%></label></th>
+      </tr>
+      <tr>
+          <th class="auto-style2" scope="row">หมายเลขลำดับประจำสินค้า</th>
+          <th ><label><%#Eval("SERIALNUM")%></label></th>
+      </tr>
+      <tr>
+          <th class="auto-style2" scope="row">สถานที่เก็บ</th>
+           <th ><label><%#Eval("TECHINFO1")%></label></th>
+      </tr>
+      <tr>
+          <th class="auto-style2" scope="row">ผู้รับผิดชอบ</th>
+           <th ><label><%#Eval("TECHINFO2")%></label></th>
+      </tr>
+  </tbody>
+</table>
+              </ItemTemplate>
+      </asp:DataList>
+          
+
+
+      
+
+      <asp:SqlDataSource ID="SqlDataitem" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [VW_ASSET] WHERE ([ASSETID] = @ASSETID)">
+          <SelectParameters>
+              <asp:ControlParameter ControlID="txt_ID" Name="ASSETID" PropertyName="Text" Type="String" />
+          </SelectParameters>
+      </asp:SqlDataSource>
+          
+
+
+      
+
+  </div>
+  
+</div>
+
+
+      
+    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT ID, ReciveFile, ID_ITEM, NAME, VAlUE, unit, Cost, brand, modal, NUM, location, PERSON, YEAR, item_status FROM ITEM_TB WHERE (ID = @ID) ">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="txt_ID" Name="ID" PropertyName="Text" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+                  </dx:PanelContent>
+</PanelCollection>
+          </dx:ASPxCallbackPanel>
+    <dx:ASPxTextBox ID="reciveID2" ClientVisible="false" runat="server" ClientInstanceName="reciveID2" Width="170px">
+    </dx:ASPxTextBox>
+
+                  
+          <dx:ASPxCallback ID="cbfile" runat="server" ClientInstanceName="cbfile">
+          </dx:ASPxCallback>
+
+                  
+          <table class="nav-justified">
+              <tr>
+                  <td class="auto-style3">
+
+                  
+       <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control-static" />
+              
+                    </td>
+                  <td>
+              <asp:Button ID="Button2" runat="server" Text="ลบรูป" CssClass="btn btn-danger" />
+                      <%#Eval("MODEL")%>
+                
+                      </td>
+              </tr>
+          </table>
+                </div>
+    <div class="modal-footer">
+        <asp:Button ID="Button1" runat="server" Text="บันทึก" CssClass="btn btn-primary" />
+        <%#Eval("SERIALNUM")%>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close   </button>
+ 
+        
+        
+</div>
+    </div>
+    
+    </div>
+    </div>
+    <div class="modal fade" id="md_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="H2">สถานะ</h4>
+      </div>
+      <div class="modal-body">
+          
+          <dx:BootstrapComboBox ID="cbbstatus" runat="server" DataSourceID="SqlDataSource4" SelectedIndex="0" TextField="item_status_name" ValueField="item_status"></dx:BootstrapComboBox>
+
+                  
+    
+                      <br />
+    
+             <dx:ASPxTextBox ID="txtlocation"  runat="server" ClientInstanceName="txtlocation" Width="170px" NullText="สถานที่">
+    </dx:ASPxTextBox>
+                <br />
+          <dx:BootstrapMemo ID="Memo1" runat="server" NullText="รายละเอียด" Width="100%">
+          </dx:BootstrapMemo>
+
+                  
+    
+                  
+          
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [item_statusTB]"></asp:SqlDataSource>
+
+                  
+    
+                  
+          
+                </div>
+    <div class="modal-footer">
+        <asp:Button ID="Button4" runat="server" Text="บันทึก" CssClass="btn btn-primary" />
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close  </button> 
+ 
+        </div>
+        </div>
+</div>
+    </div>
+
+
+    <dx:ASPxCallbackPanel ID="cbck" runat="server" Width="200px" ClientInstanceName="cbck"></dx:ASPxCallbackPanel>
+
+
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentHeader" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentFooter" Runat="Server">
+      <script src="../eternicode-bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $('#sandbox-container .input-daterange').datepicker({
+            format: "dd/mm/yyyy",
+            calendarWeeks: true
+        });
+  </script>
+</asp:Content>
+

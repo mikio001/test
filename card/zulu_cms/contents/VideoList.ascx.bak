@@ -1,0 +1,45 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="VideoList.ascx.vb" Inherits="zulu_cms_contents_Gallery" %>
+<%@ Register Assembly="Zulu" Namespace="Zulu.UI" TagPrefix="cc1" %>
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+        <%@ Register src="../StartEditorToolbox.ascx" tagname="StartEditorToolbox" tagprefix="uc2" %>
+<%@ Register src="../EndEditorToolbox.ascx" tagname="editortoolbox" tagprefix="uc1" %>
+
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $("a[rel^='prettyPhoto']").prettyPhoto();
+            });
+        </script>
+         <script type="text/javascript" charset="utf-8">
+             $(document).ready(function () {
+                 $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'normal', theme: 'facebook', slideshow: 3000, autoplay_slideshow: true });
+                 $(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'fast', slideshow: 10000 });
+             });
+			</script>
+
+<uc2:StartEditorToolbox ID="StartEditorToolbox1" runat="server" />
+
+<cc1:DirectRender ID="Youtube" runat="server"  ContentID="UPVideo" />
+
+
+   
+    
+   
+
+    
+
+<uc1:editortoolbox ID="EndEditorToolbox1" runat="server" 
+    EditorPage="HtmlEditor" />
+
+    
+
+
+
+   
+    
+   
+
+    
+
+   

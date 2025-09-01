@@ -1,0 +1,233 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPageBootstrap.master.vb" Inherits="Main_DefaultPage_MasterPageMetro" %>
+
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <!-- Mobile viewport optimized: h5bp.com/viewport -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+   <title>Rehabilitation</title>
+
+   <meta name="Robot" content="Index, Follow">
+    <meta name="Keywords" lang="en" content="University of Phayao, UP, Thai University, Public University, Comprehensive University, Higher Education, bachelor's, master's, doctoral, Ph.D., Admission, Phayao">
+    <meta name="Keywords" lang="th" content="มหาวิทยาลัย , มหาวิทยาลัยพะเยา , พะเยา, มพ., วิจัย,  ปริญญาตรี, ปริญญาโท,ปริญญาเอก,รับนิสิตใหม่,รับตรง, เชียงราย,สาธิต">
+    <meta name="Description" content="มหาวิทยาลัยพะเยา (University of Phayao)">
+
+   <meta name="author" content="citcoms"/>
+   
+ <link href="../bootstrap-3.0.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link href="../css/animate.css" rel="stylesheet" />
+
+    <link href="../bootstrap-3.0.3/dist/css/docs.css" rel="stylesheet">
+
+    <%--<link rel="stylesheet" href="../bootstrapvalidator-dist-0.4.5/dist/css/bootstrapValidator.css"/>--%>
+
+    <link href="../css/ReplaceDX.css" rel="stylesheet">
+ 
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      <script src="../js/bootbox.min.js"></script>
+    <script src="../bootstrap-3.0.3/dist/js/jquery-1.10.2.min.js"></script>
+     
+     <script src="../js/bootbox.min.js"></script>
+ 
+  
+    <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <style>
+        #ModalEdit .modal-dialog {
+  width: 90%;
+  padding: 0;
+}
+
+    </style>
+
+        <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+       <style>
+       .styleselect .aspNetDisabled  {
+
+width: 100%;
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.428571429;
+color: #555;
+vertical-align: middle;
+background-color: #eee;
+background-image: none;
+/*border: 1px solid #ccc;*/
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+    </style>
+
+</head>
+
+<body  style="" data-twttr-rendered="true">
+    <form id="Form1" runat="server">
+        <header id="navbarmain" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav noprint" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./" class="navbar-brand"><span class="glyphicon glyphicon-record"></span> PHAYAO</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+         <%=menuText %>
+    
+           
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       <li><table style="margin-top:7px"><tr><td><asp:Button ID="btEditMode" CssClass="btn btn-success" 
+                        Visible="false" runat="server" Text="EditMode = OFF"  UseSubmitBehavior="False"  /></td><td><%=lblAuthenMenu%></td></tr></table> </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+  
+       
+       
+       
+                
+                  
+   
+   <asp:ContentPlaceHolder id="ContentBanner" runat="server">          
+<div class="bs-header noprint" >              
+      <div class="container">
+        <h1>Rehabilitation</h1>
+        <p>Phayao</p>       
+      </div>                  
+</div>
+     </asp:ContentPlaceHolder>
+         <%If pageNav <> "" Then%>
+<div class="bs-old-docs noprint" id="pagenavbar">
+       <div class="container">
+                        <div style="float:left;padding-top:8px; padding-right:10px;">
+                            <a id="backbutton" style="position:inherit;" class="win-backbutton" href="javascript:history.back();"></a>
+                        </div>
+                        <div style="float:left;">
+                           
+                          
+                            <h6>
+                                   <%=pageNav %>
+                            </h6>
+                        </div>    
+       </div>
+</div> <%end if %>    
+   <asp:ContentPlaceHolder id="ContentHeader" runat="server">                     
+ 
+    </asp:ContentPlaceHolder>
+
+        <div class="container bs-docs-container" style="margin-top:10px">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            
+        
+        </asp:ContentPlaceHolder>
+
+        </div>
+
+  
+   
+     
+       
+    <footer class="bs-footer noprint" id="pageFooter" role="contentinfo">
+      <div class="container">
+       <p>Designed by ... </p>
+      
+      </div>
+    </footer>
+    
+   
+   
+
+   
+
+   <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+   <%--<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script>window.jQuery || document.write("<script src='../bootmetro-0.6.0/scripts/jquery-1.8.2.min.js'>\x3C/script>")</script>--%>
+   
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel"  aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        กรุณารอสักครู่.....
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        
+   
+
+
+<%--<script type="text/javascript" src="../bootstrapvalidator-dist-0.4.5/dist/js/bootstrapValidator.js"></script>--%>
+        <div class="modal fade" id="ModelList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="H2">รายการแจ้งผลการดำเนินการ</h4>
+      </div>
+      <div class="modal-body">
+           <iframe id="FrameList" width="100%" height="500px" style="border:0px" ></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div class="modal fade " id="ModalEdit" tabindex="-1" role="dialog" style="z-index:999999999" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">EDIT MODE</h4>
+      </div>
+      <div class="modal-body">
+       <iframe  height="600px" id="editFrame" width="100%" style="border:none"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+         
+         <script src="../bootstrap-3.0.3/dist/js/bootstrap.min.js"></script>
+          <script src="../js/wow.min.js"></script>
+        <script> wow = new WOW();
+            wow.init();</script>
+   <asp:ContentPlaceHolder id="ContentFooter" runat="server">
+        
+            
+        
+        </asp:ContentPlaceHolder>
+        </form> 
+</body>
+</html>

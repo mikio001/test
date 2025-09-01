@@ -1,0 +1,141 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/zulu_web/VCMasterPage.master" AutoEventWireup="false"
+    CodeFile="Acl.aspx.vb" Inherits="zulu_cms_admin_Default" %>
+
+<%@ Register Assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
+    Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="pageHeader">
+        <div class="pageHeaderIcon">
+            <asp:Image ID="pageIcon" ImageAlign="AbsMiddle" runat="server" ImageUrl="~/zulu_web/images/page_icon.gif" /></div>
+        <div class="pageHeaderTitle">
+            กำหนดสิทธิ์การจัดการเว็บไซต์
+        </div>
+    </div>
+    <div class="viewFrame">
+        <table class="viewFrameHeader" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="viewFrameHeaderLeft">
+                </td>
+                <td class="viewFrameHeaderTitle">
+                    &nbsp;
+                </td>
+                <td class="viewFrameHeaderRight">
+                </td>
+            </tr>
+        </table>
+        <div class="viewFrameBody">
+            <table cellpadding="0" cellspacing="4" class="text">
+                <tr>
+                    <td>
+                        <dx:ASPxGridView ID="memberGrid" runat="server" AutoGenerateColumns="False" ClientIDMode="AutoID"
+                            DataSourceID="SqlDataSource1" KeyFieldName="username" Width="653px" 
+                            ClientInstanceName="memberGrid">
+                            <Columns>
+                                <dx:GridViewCommandColumn Caption="&amp;nbsp;" VisibleIndex="0" 
+                                    ButtonType="Image" Width="70px">
+                                    <EditButton Visible="True">
+                                        <Image Url="~/zulu_web/images/edit.gif">
+                                        </Image>
+                                    </EditButton>
+                                    <NewButton Visible="True">
+                                        <Image Url="~/zulu_web/images/add.gif">
+                                        </Image>
+                                    </NewButton>
+                                    <DeleteButton Visible="True">
+                                        <Image Url="~/zulu_web/images/delete.gif">
+                                        </Image>
+                                    </DeleteButton>
+                                    <CancelButton>
+                                        <Image Url="~/zulu_web/images/cancel.gif">
+                                        </Image>
+                                    </CancelButton>
+                                    <UpdateButton>
+                                        <Image Url="~/zulu_web/images/save.gif">
+                                        </Image>
+                                    </UpdateButton>
+                                </dx:GridViewCommandColumn>
+                                <dx:GridViewDataTextColumn FieldName="siteID" ReadOnly="False" VisibleIndex="0" 
+                                    Visible="False">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="username" ReadOnly="False" 
+                                    VisibleIndex="1" Caption="Username" Width="150px">
+                                    <PropertiesTextEdit>
+                                        <ValidationSettings>
+                                            <RequiredField IsRequired="True" />
+                                        </ValidationSettings>
+                                    </PropertiesTextEdit>
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn FieldName="contentID" ReadOnly="False" 
+                                    VisibleIndex="2" Caption="Content ID">
+                                    <PropertiesTextEdit>
+                                        <ValidationSettings>
+                                            <RequiredField IsRequired="True" />
+                                        </ValidationSettings>
+                                    </PropertiesTextEdit>
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataCheckColumn Caption="Add" FieldName="canAdd" VisibleIndex="3" 
+                                    Width="40px">
+                                </dx:GridViewDataCheckColumn>
+                                <dx:GridViewDataCheckColumn Caption="Edit" FieldName="canEdit" VisibleIndex="4" 
+                                    Width="40px">
+                                </dx:GridViewDataCheckColumn>
+                                <dx:GridViewDataCheckColumn Caption="Delete" FieldName="canDelete" 
+                                    VisibleIndex="5" Width="40px">
+                                </dx:GridViewDataCheckColumn>
+                                <dx:GridViewDataCheckColumn Caption="Prop" FieldName="canProp" 
+                                    VisibleIndex="6" Width="40px">
+                                </dx:GridViewDataCheckColumn>
+                                <dx:GridViewDataCheckColumn Caption="Admin" FieldName="canAdmin" 
+                                    VisibleIndex="7" Width="40px">
+                                </dx:GridViewDataCheckColumn>
+                            </Columns>
+                            <SettingsBehavior ConfirmDelete="True" />
+                            <SettingsPager Mode="ShowAllRecords" Visible="False">
+                            </SettingsPager>
+                            <SettingsEditing Mode="Inline" />
+                            <Settings ShowVerticalScrollBar="True" />
+                            <SettingsText ConfirmDelete="ท่านต้องการลบสมาชิกใช่หรือไม่?" />
+                        </dx:ASPxGridView>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ZuluDB %>"
+                            OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [siteID], [username], [contentID], [canAdd], [canEdit], [canDelete], [canAdmin], [canProp] FROM [ZCMS_SITE_ACL] WHERE ([siteID] = @siteID)"
+                            ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [ZCMS_SITE_ACL] WHERE [siteID] = @original_siteID AND [username] = @original_username"
+                            
+                            InsertCommand="INSERT INTO [ZCMS_SITE_ACL] ([siteID], [username], [contentID], [canAdd], [canEdit], [canDelete], [canAdmin], [canProp]) VALUES (@siteID, @username, @contentID, @canAdd, @canEdit, @canDelete, @canAdmin, @canProp)" 
+                            UpdateCommand="UPDATE [ZCMS_SITE_ACL] SET [canProp]=@canProp, [canAdd] = @canAdd, [contentID]=@contentID, [canEdit] = @canEdit, [canDelete] = @canDelete, [canAdmin] = @canAdmin WHERE [siteID] = @original_siteID AND [username] = @original_username">
+                            <DeleteParameters>
+                                <asp:Parameter Name="original_siteID" Type="String" />
+                                <asp:Parameter Name="original_username" Type="String" />
+                            </DeleteParameters>
+                            <InsertParameters>
+                                <asp:Parameter Name="siteID" Type="String" />
+                                <asp:Parameter Name="username" Type="String" />
+                                <asp:Parameter Name="contentID" Type="String" />
+                                <asp:Parameter Name="canAdd" Type="Int32" />
+                                <asp:Parameter Name="canEdit" Type="Int32" />
+                                <asp:Parameter Name="canDelete" Type="Int32" />
+                                <asp:Parameter Name="canAdmin" Type="Int32" />
+                                <asp:Parameter Name="canProp" Type="Int32" />
+                            </InsertParameters>
+                            <SelectParameters>
+                                <asp:Parameter Name="siteID" Type="String" DefaultValue="UP" />
+                            </SelectParameters>
+                            <UpdateParameters>
+                                 <asp:Parameter Name="canProp" Type="Int32" />
+                                <asp:Parameter Name="canAdd" Type="Int32" />
+                                <asp:Parameter Name="contentID" Type="String" />
+                                <asp:Parameter Name="canEdit" Type="Int32" />
+                                <asp:Parameter Name="canDelete" Type="Int32" />
+                                <asp:Parameter Name="canAdmin" Type="Int32" />
+                                <asp:Parameter Name="original_siteID" Type="String" />
+                                <asp:Parameter Name="original_username" Type="String" />
+                            </UpdateParameters>
+                        </asp:SqlDataSource>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</asp:Content>

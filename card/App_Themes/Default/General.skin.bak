@@ -1,0 +1,161 @@
+﻿
+<%@ Register Assembly="DevExpress.Web.v17.1" Namespace="DevExpress.Web" TagPrefix="dxm" %> 
+<%@ Register Assembly="DevExpress.Web.v17.1" Namespace="DevExpress.Web" TagPrefix="dxrp" %> 
+<%@ Register Assembly="DevExpress.Web.v17.1" Namespace="DevExpress.Web" TagPrefix="dxe" %>
+
+<asp:Panel runat="server" SkinID="pnlEnteteMaster" CssClass="header" />
+
+<asp:Panel runat="server" SkinID="pnlGaucheMaster" CssClass="gauche" />
+    
+<asp:Panel runat="server" SkinID="pnlDroiteMaster"  CssClass="centre" />
+
+<asp:Panel runat="server" SkinID="pnlBasMaster" />
+
+<dxrp:ASPxRoundPanel skinID="pnlRound"  EnableDefaultAppearance="true"
+        Width="100%" runat="server" BackColor="#FFFFFF"  
+        >
+     <TopLeftCorner Height="5px" Url="~/Images/rpTopLeftCorner.png" 
+         Width="5px" />
+     <content>
+        <backgroundimage 
+             repeat="RepeatX" verticalposition="bottom" />
+     </content>
+     <headerleftedge>
+         <backgroundimage imageurl="~/Images/rpHeaderLeftEdge.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headerleftedge>
+     <HeaderStyle BackColor="White" Height="23px">
+         <paddings paddingbottom="0px" paddingleft="2px" paddingtop="0px" />
+         <borderbottom borderstyle="None" />
+     </HeaderStyle>
+     <bottomedge backcolor="#FFFFFF">
+     </bottomedge>
+     <TopRightCorner Height="5px" Url="~/Images/rpTopRightCorner.png" 
+         Width="5px" />
+     <leftedge>
+         <backgroundimage  
+             repeat="RepeatX" verticalposition="bottom" />
+     </leftedge>
+     <BottomRightCorner Height="5px" 
+         Url="~/Images/rpBottomRightCorner.png" Width="5px" />
+     <BottomLeftCorner Height="5px" 
+         Url="~/Images/rpBottomLeftCorner.png" Width="5px" />
+     <noheadertoprightcorner height="5px" 
+         url="~/Images/rpNoHeaderTopRightCorner.png" width="5px" />
+     <rightedge>
+         <backgroundimage repeat="RepeatX" verticalposition="bottom" />
+     </rightedge>
+     <headerrightedge>
+         <backgroundimage imageurl="~/Images/rpHeaderRightEdge.gif" 
+             verticalposition="bottom" />
+     </headerrightedge>
+     <Border BorderColor="#EEEEEE" BorderStyle="Solid" BorderWidth="1px" />
+     <ContentPaddings paddingbottom="10px" paddingleft="4px" paddingtop="10px" />
+     <headercontent>
+         <backgroundimage imageurl="~/Images/rpHeaderBack.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headercontent>
+     <noheadertopedge backcolor="#FFFFFF">
+     </noheadertopedge>
+     <noheadertopleftcorner height="5px" 
+         url="~/Images/rpNoHeaderTopLeftCorner.png" width="5px" />
+ </dxrp:ASPxRoundPanel>    
+
+
+
+ 
+<dxrp:ASPxRoundPanel skinID="pnlRoundEntete"  EnableDefaultAppearance="true"
+        Width="100%" runat="server" BackColor="#FFFFFF" 
+        >
+  
+     <content>
+        <backgroundimage imageurl="~/Images/rpHeaderBack.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </content>
+     <headerleftedge>
+         <backgroundimage imageurl="~/Images/rpHeaderLeftEdge.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headerleftedge>
+     <HeaderStyle BackColor="White" Height="23px">
+         <paddings paddingbottom="0px" paddingleft="2px" paddingtop="0px" />
+         <borderbottom borderstyle="None" />
+     </HeaderStyle>
+     <bottomedge backcolor="#f3f4f6">
+     </bottomedge>  
+     <leftedge>
+         <backgroundimage  imageurl="~/Images/rpHeaderLeftEdge.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </leftedge>
+  
+     <noheadertoprightcorner height="5px" 
+         url="~/Images/rpNoHeaderTopRightCorner.png" width="5px" />
+     <rightedge>
+         <backgroundimage imageurl="~/Images/rpHeaderRightEdge.gif"  repeat="RepeatX" verticalposition="bottom" />
+     </rightedge>
+     <headerrightedge>
+         <backgroundimage imageurl="~/Images/rpHeaderRightEdge.gif" 
+             verticalposition="bottom" />
+     </headerrightedge>
+     <Border BorderColor="#f3f4f6" BorderStyle="Solid" BorderWidth="1px" />
+     <ContentPaddings paddingbottom="0px" paddingleft="4px" paddingtop="0px" />
+     <headercontent>
+         <backgroundimage imageurl="~/Images/rpHeaderBack.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headercontent>
+     <noheadertopedge backcolor="#FFFFFF">
+     </noheadertopedge>
+     <noheadertopleftcorner height="5px" 
+         url="~/Images/rpNoHeaderTopLeftCorner.png" width="5px" />
+ </dxrp:ASPxRoundPanel>    
+
+
+
+<dxrp:ASPxRoundPanel skinID="pnlRoundMenu" EnableDefaultAppearance="true"
+        Width="100%" runat="server" BackColor="#FFFFFF" CssClass="pnlListBoxMenu"
+        >
+  
+     <content>
+        <backgroundimage imageurl="~/Images/rpHeaderBack.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </content>
+     <headerleftedge>
+         <backgroundimage imageurl="~/Images/rpHeaderLeftEdge.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headerleftedge>
+     <HeaderStyle BackColor="White" Height="23px">
+         <paddings paddingbottom="0px" paddingleft="0px" paddingtop="0px" />
+         <borderbottom borderstyle="None" />
+     </HeaderStyle>
+     <bottomedge backcolor="#f3f4f6">
+     </bottomedge>  
+     <leftedge>
+         <backgroundimage  imageurl="~/Images/rpHeaderLeftEdge.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </leftedge>
+  
+     <noheadertoprightcorner height="0px" 
+         url="~/Images/rpNoHeaderTopRightCorner.png" width="0px" />
+     <rightedge>
+         <backgroundimage imageurl="~/Images/rpHeaderRightEdge.gif"  repeat="RepeatX" verticalposition="bottom" />
+     </rightedge>
+     <headerrightedge>
+         <backgroundimage imageurl="~/Images/rpHeaderRightEdge.gif" 
+             verticalposition="bottom" />
+     </headerrightedge>
+     <Border BorderColor="#ffffff" BorderStyle="Solid" BorderWidth="0px" />
+     <ContentPaddings paddingbottom="0px" paddingleft="0px" paddingtop="0px" />
+     <headercontent>
+         <backgroundimage imageurl="~/Images/rpHeaderBack.gif" 
+             repeat="RepeatX" verticalposition="bottom" />
+     </headercontent>
+     <noheadertopedge backcolor="#FFFFFF">
+     </noheadertopedge>
+     <noheadertopleftcorner height="0px" 
+         url="~/Images/rpNoHeaderTopLeftCorner.png" width="0px" />
+ </dxrp:ASPxRoundPanel>    
+
+<dxe:ASPxTextBox runat="server" SkinID="skinTextBox" BackColor="#FFFFFF" Border-BorderColor="#DFDFDF" Border-BorderWidth="1px" Border-BorderStyle="Solid" EnableDefaultAppearance="true"  ></dxe:ASPxTextBox>
+<dxe:ASPxComboBox runat="server" SkinID="skinComboBox" BackColor="#FFFFFF" Border-BorderColor="#DFDFDF" Border-BorderWidth="1px" Border-BorderStyle="Solid"  EnableDefaultAppearance="true" ></dxe:ASPxComboBox>
+<dxe:ASPxMemo runat="server" SkinID="skinMemo" BackColor="#FFFFFF" Border-BorderColor="#DFDFDF" Border-BorderWidth="1px" Border-BorderStyle="Solid" EnableDefaultAppearance="true" ></dxe:ASPxMemo>
+<dxe:ASPxSpinEdit runat="server" SkinID="skinSpinEdit" BackColor="#FFFFFF" Border-BorderColor="#DFDFDF" Border-BorderWidth="1px" Border-BorderStyle="Solid" EnableDefaultAppearance="true" ></dxe:ASPxSpinEdit>
+<dxe:ASPxListBox runat="server" SkinID="skinListBox" BackColor="#FFFFFF" Border-BorderColor="#DFDFDF" Border-BorderWidth="1px" Border-BorderStyle="Solid" EnableDefaultAppearance="true" ></dxe:ASPxListBox>

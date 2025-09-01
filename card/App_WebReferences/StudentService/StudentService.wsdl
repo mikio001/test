@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetClass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClassResult" type="tns:ArrayOfClassInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfClassInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClassInfo" nillable="true" type="tns:ClassInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClassInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Month" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Section" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeacherName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DayOfWeek" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClassExam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="examtype" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassExamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClassExamResult" type="tns:ArrayOfClassInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGPAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGPAResult" type="tns:ArrayOfStudentGPA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentGPA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentGPA" nillable="true" type="tns:StudentGPA" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentGPA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GPA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GPAX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcadYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Semester" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GPAStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGrade">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGradeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGradeResult" type="tns:ArrayOfStudentGRADE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentGRADE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentGRADE" nillable="true" type="tns:StudentGRADE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentGRADE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Credit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Grade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcadYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Semester" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRegStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="subjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRegStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentInfoAnother">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="stundentCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentInfoAnotherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentInfoAnotherResult" type="tns:StudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StudentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StudentCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CitizenID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProgramName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProgramName_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CourseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CourseName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CourseName_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FacultyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FacultyName_TH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FacultyName_EN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentSemester" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvisorName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdvisorName2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Birthday" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sex" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStudentInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStudentInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStudentInfoResult" type="tns:StudentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActivityResult" type="tns:ArrayOfStudentActivity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentActivity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentActivity" nillable="true" type="tns:StudentActivity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentActivity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Semester" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcadYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityHour" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPoint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPointResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPointResult" type="tns:ArrayOfStudentPoint" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStudentPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StudentPoint" nillable="true" type="tns:StudentPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StudentPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Semester" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcadYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PointName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CPoint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cdate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPoint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rdate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTeacherClass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="teacherName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeacherClassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTeacherClassResult" type="tns:ArrayOfClassInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="acadYear" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="semester" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="subjectName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubjectIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfClassInfo" nillable="true" type="tns:ArrayOfClassInfo" />
+      <s:element name="ArrayOfStudentGPA" nillable="true" type="tns:ArrayOfStudentGPA" />
+      <s:element name="ArrayOfStudentGRADE" nillable="true" type="tns:ArrayOfStudentGRADE" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="StudentInfo" nillable="true" type="tns:StudentInfo" />
+      <s:element name="ArrayOfStudentActivity" nillable="true" type="tns:ArrayOfStudentActivity" />
+      <s:element name="ArrayOfStudentPoint" nillable="true" type="tns:ArrayOfStudentPoint" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetClassSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClass" />
+  </wsdl:message>
+  <wsdl:message name="GetClassSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClassExam" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClassExamResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGPASoapIn">
+    <wsdl:part name="parameters" element="tns:GetGPA" />
+  </wsdl:message>
+  <wsdl:message name="GetGPASoapOut">
+    <wsdl:part name="parameters" element="tns:GetGPAResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGrade" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentInfoAnother" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentInfoAnotherResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStudentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStudentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetActivity" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPointSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPoint" />
+  </wsdl:message>
+  <wsdl:message name="GetPointSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPointResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeacherClass" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeacherClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubjectID" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubjectIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClassHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="examtype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetGPAHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGPAHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentGPA" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentGRADE" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="subjectID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="stundentCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherHttpGetOut">
+    <wsdl:part name="Body" element="tns:StudentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:StudentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentActivity" />
+  </wsdl:message>
+  <wsdl:message name="GetPointHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPointHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentPoint" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="teacherName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDHttpGetIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="subjectName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="examtype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassExamHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetGPAHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGPAHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentGPA" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGradeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentGRADE" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="subjectID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRegStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="stundentCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoAnotherHttpPostOut">
+    <wsdl:part name="Body" element="tns:StudentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStudentInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:StudentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentActivity" />
+  </wsdl:message>
+  <wsdl:message name="GetPointHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPointHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStudentPoint" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="teacherName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeacherClassHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfClassInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDHttpPostIn">
+    <wsdl:part name="sessionID" type="s:string" />
+    <wsdl:part name="acadYear" type="s:string" />
+    <wsdl:part name="semester" type="s:string" />
+    <wsdl:part name="subjectName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="StudentServiceSoap">
+    <wsdl:operation name="GetClass">
+      <wsdl:input message="tns:GetClassSoapIn" />
+      <wsdl:output message="tns:GetClassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <wsdl:input message="tns:GetClassExamSoapIn" />
+      <wsdl:output message="tns:GetClassExamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <wsdl:input message="tns:GetGPASoapIn" />
+      <wsdl:output message="tns:GetGPASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <wsdl:input message="tns:GetGradeSoapIn" />
+      <wsdl:output message="tns:GetGradeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <wsdl:input message="tns:GetRegStatusSoapIn" />
+      <wsdl:output message="tns:GetRegStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input message="tns:GetStatusSoapIn" />
+      <wsdl:output message="tns:GetStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <wsdl:input message="tns:GetStudentInfoAnotherSoapIn" />
+      <wsdl:output message="tns:GetStudentInfoAnotherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <wsdl:input message="tns:GetStudentInfoSoapIn" />
+      <wsdl:output message="tns:GetStudentInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <wsdl:input message="tns:GetActivitySoapIn" />
+      <wsdl:output message="tns:GetActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <wsdl:input message="tns:GetPointSoapIn" />
+      <wsdl:output message="tns:GetPointSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <wsdl:input message="tns:GetTeacherClassSoapIn" />
+      <wsdl:output message="tns:GetTeacherClassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <wsdl:input message="tns:GetSubjectIDSoapIn" />
+      <wsdl:output message="tns:GetSubjectIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StudentServiceHttpGet">
+    <wsdl:operation name="GetClass">
+      <wsdl:input message="tns:GetClassHttpGetIn" />
+      <wsdl:output message="tns:GetClassHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <wsdl:input message="tns:GetClassExamHttpGetIn" />
+      <wsdl:output message="tns:GetClassExamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <wsdl:input message="tns:GetGPAHttpGetIn" />
+      <wsdl:output message="tns:GetGPAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <wsdl:input message="tns:GetGradeHttpGetIn" />
+      <wsdl:output message="tns:GetGradeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <wsdl:input message="tns:GetRegStatusHttpGetIn" />
+      <wsdl:output message="tns:GetRegStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input message="tns:GetStatusHttpGetIn" />
+      <wsdl:output message="tns:GetStatusHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <wsdl:input message="tns:GetStudentInfoAnotherHttpGetIn" />
+      <wsdl:output message="tns:GetStudentInfoAnotherHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <wsdl:input message="tns:GetStudentInfoHttpGetIn" />
+      <wsdl:output message="tns:GetStudentInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <wsdl:input message="tns:GetActivityHttpGetIn" />
+      <wsdl:output message="tns:GetActivityHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <wsdl:input message="tns:GetPointHttpGetIn" />
+      <wsdl:output message="tns:GetPointHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <wsdl:input message="tns:GetTeacherClassHttpGetIn" />
+      <wsdl:output message="tns:GetTeacherClassHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <wsdl:input message="tns:GetSubjectIDHttpGetIn" />
+      <wsdl:output message="tns:GetSubjectIDHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StudentServiceHttpPost">
+    <wsdl:operation name="GetClass">
+      <wsdl:input message="tns:GetClassHttpPostIn" />
+      <wsdl:output message="tns:GetClassHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <wsdl:input message="tns:GetClassExamHttpPostIn" />
+      <wsdl:output message="tns:GetClassExamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <wsdl:input message="tns:GetGPAHttpPostIn" />
+      <wsdl:output message="tns:GetGPAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <wsdl:input message="tns:GetGradeHttpPostIn" />
+      <wsdl:output message="tns:GetGradeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <wsdl:input message="tns:GetRegStatusHttpPostIn" />
+      <wsdl:output message="tns:GetRegStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input message="tns:GetStatusHttpPostIn" />
+      <wsdl:output message="tns:GetStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <wsdl:input message="tns:GetStudentInfoAnotherHttpPostIn" />
+      <wsdl:output message="tns:GetStudentInfoAnotherHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <wsdl:input message="tns:GetStudentInfoHttpPostIn" />
+      <wsdl:output message="tns:GetStudentInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <wsdl:input message="tns:GetActivityHttpPostIn" />
+      <wsdl:output message="tns:GetActivityHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <wsdl:input message="tns:GetPointHttpPostIn" />
+      <wsdl:output message="tns:GetPointHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <wsdl:input message="tns:GetTeacherClassHttpPostIn" />
+      <wsdl:output message="tns:GetTeacherClassHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <wsdl:input message="tns:GetSubjectIDHttpPostIn" />
+      <wsdl:output message="tns:GetSubjectIDHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StudentServiceSoap" type="tns:StudentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClass">
+      <soap:operation soapAction="http://tempuri.org/GetClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <soap:operation soapAction="http://tempuri.org/GetClassExam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <soap:operation soapAction="http://tempuri.org/GetGPA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <soap:operation soapAction="http://tempuri.org/GetGrade" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <soap:operation soapAction="http://tempuri.org/GetRegStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="http://tempuri.org/GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <soap:operation soapAction="http://tempuri.org/GetStudentInfoAnother" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <soap:operation soapAction="http://tempuri.org/GetStudentInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap:operation soapAction="http://tempuri.org/GetActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <soap:operation soapAction="http://tempuri.org/GetPoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <soap:operation soapAction="http://tempuri.org/GetTeacherClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <soap:operation soapAction="http://tempuri.org/GetSubjectID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StudentServiceSoap12" type="tns:StudentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetClass">
+      <soap12:operation soapAction="http://tempuri.org/GetClass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <soap12:operation soapAction="http://tempuri.org/GetClassExam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <soap12:operation soapAction="http://tempuri.org/GetGPA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <soap12:operation soapAction="http://tempuri.org/GetGrade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetRegStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentInfoAnother" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetStudentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap12:operation soapAction="http://tempuri.org/GetActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <soap12:operation soapAction="http://tempuri.org/GetPoint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <soap12:operation soapAction="http://tempuri.org/GetTeacherClass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <soap12:operation soapAction="http://tempuri.org/GetSubjectID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StudentServiceHttpGet" type="tns:StudentServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetClass">
+      <http:operation location="/GetClass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <http:operation location="/GetClassExam" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <http:operation location="/GetGPA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <http:operation location="/GetGrade" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <http:operation location="/GetRegStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <http:operation location="/GetStatus" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <http:operation location="/GetStudentInfoAnother" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <http:operation location="/GetStudentInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <http:operation location="/GetActivity" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <http:operation location="/GetPoint" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <http:operation location="/GetTeacherClass" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <http:operation location="/GetSubjectID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StudentServiceHttpPost" type="tns:StudentServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetClass">
+      <http:operation location="/GetClass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassExam">
+      <http:operation location="/GetClassExam" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGPA">
+      <http:operation location="/GetGPA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGrade">
+      <http:operation location="/GetGrade" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegStatus">
+      <http:operation location="/GetRegStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <http:operation location="/GetStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfoAnother">
+      <http:operation location="/GetStudentInfoAnother" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentInfo">
+      <http:operation location="/GetStudentInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <http:operation location="/GetActivity" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPoint">
+      <http:operation location="/GetPoint" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeacherClass">
+      <http:operation location="/GetTeacherClass" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectID">
+      <http:operation location="/GetSubjectID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StudentService">
+    <wsdl:port name="StudentServiceSoap" binding="tns:StudentServiceSoap">
+      <soap:address location="https://ws.up.ac.th/mobile/StudentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StudentServiceSoap12" binding="tns:StudentServiceSoap12">
+      <soap12:address location="https://ws.up.ac.th/mobile/StudentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StudentServiceHttpGet" binding="tns:StudentServiceHttpGet">
+      <http:address location="https://ws.up.ac.th/mobile/StudentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StudentServiceHttpPost" binding="tns:StudentServiceHttpPost">
+      <http:address location="https://ws.up.ac.th/mobile/StudentService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

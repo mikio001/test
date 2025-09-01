@@ -1,0 +1,12 @@
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Data" Assembly="DevExpress.Data.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register TagPrefix="dxe" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v21.1, Version=21.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+
+<dxe:ASPxFilterControl runat="server">
+	<Images SpriteCssFilePath="~/App_Themes/iOS/{0}/sprite.css">
+	    <LoadingPanel Url="~/App_Themes/iOS/Editors/Loading.gif" />
+	</Images>
+	<LoadingPanelStyle ImageSpacing="5" />
+	<Styles CssFilePath="~/App_Themes/iOS/{0}/styles.css" CssPostfix="iOS" />
+	<StylesEditors ButtonEditCellSpacing="0" />
+</dxe:ASPxFilterControl>
+

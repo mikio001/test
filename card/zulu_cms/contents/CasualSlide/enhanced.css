@@ -1,0 +1,129 @@
+/*
+*************************************************
+
+Harvard University
+Enhanced Screen Styles
+
+Created by the friendly folks at Happy Cog
+http://www.happycog.com/
+
+*************************************************
+
+er-social .controls a, .emergency .close, .carousel-controls a { display: block; text-indent: -9999px; background-color: transparent; background-position: 0 0; background-repeat: no-repeat; overflow: hidden; }
+
+.emergency .close { display: block; position: absolute; top: -4px; right: 0; height: 16px; width: 16px; background: url(../../a/widgets/btn-emergency-close.png) no-repeat 0 0; cursor: pointer; }
+.emergency .close:hover, .emergency .close:focus { background-position: 0 -16px; }
+
+
+.adjoin-options, .main .adjoin-options { width: 262px; height: 220px; overflow-y: scroll; padding: 5px 0 0;  }
+
+/*-------------------------------------------
+    Streamer
+-------------------------------------------*/
+
+.heading-tab li { margin-bottom: 8px; }
+	.heading-tab a { display: block; position: relative; right: -20px; width: 77px; padding: 10px 5px 9px 42px; background: url(../../a/screen/streamer-sprite.gif) no-repeat 0 0; color: #adadad; font-weight: bold; text-transform: uppercase; }
+	.heading-tab a:hover, .heading-tab a:focus { color: #3b7abd; }
+	.heading-tab .active a { background-color: #3f3f3f; color: #fff; }
+	.heading-tab a.twitter { background-position: 5px 4px; }
+	.heading-tab a.twitter:hover, .heading-tab a.twitter:focus { background-position: 5px -664px; }
+	.heading-tab .active a.twitter { background-position: 5px -312px; }
+	.heading-tab a.fb { background-position: 5px -123px; }
+	.heading-tab a.fb:hover, .heading-tab a.fb:focus { background-position: 5px -780px; }
+	.heading-tab .active a.fb { background-position: 5px -428px; }
+	.heading-tab a.itunes { background-position: 5px -215px; }
+	.heading-tab a.itunes:hover, .heading-tab a.itunes:focus { background-position: 5px -896px; }
+	.heading-tab .active a.itunes { background-position: 5px -541px; }
+	.heading-tab .active a:after { position: absolute; top: 0; right: -15px; content: url(../../a/screen/bg-heading-tab.gif); }
+
+	* html .heading-tab .active a.twitter:hover, * html .heading-tab .active a.twitter:focus { background-position: 5px -312px; }
+	* html .heading-tab .active a.fb:hover, * html .heading-tab .active a.fb:focus { background-position: 5px -428px; }
+	* html .heading-tab .active a.itunes:hover, * html .heading-tab .active a.itunes:focus { background-position: 5px -541px; }
+
+.streamer .heading h2 { width: 90px; }
+
+.streamer .heading-tab { position: relative; z-index: 1; }
+
+.streamer-social { display: table }
+	.streamer-social .heading, .streamer-social .prime { display: table-cell; }
+
+	.streamer-social .prime { width: 856px; overflow:hidden;}
+	* + html .action-footer .streamer .prime { width: 854px; }
+	* html .action-footer .streamer .prime { width: auto; }
+
+	.streamer-social .heading { width: 90px; }
+	.action-footer .streamer-social .listing { width: 654px; border-right: 1px solid #C3C3C3; }
+		.action-footer .streamer-social .listing li { width: 180px; border-left: none; border-right: 1px solid #c3c3c3; }
+
+.streamer-social .controls { float: left; display: table-cell; width: 42px; }
+	.streamer-social .controls a { width: 32px; height: 32px; background-image: url(../../a/widgets/btn-streamer-controls.gif); }
+	.streamer-social .controls .prev { margin-top: 28px; }
+	.streamer-social .controls .prev:hover, .streamer-social .controls .prev:focus { background-position: 0 -32px; }
+	.streamer-social .controls .next { margin-top: 4px; background-position: -32px 0; }
+	.streamer-social .controls .next:hover, .streamer-social .controls .next:focus { background-position: -32px -32px; }
+	.streamer-social .controls .disabled { opacity: 0.2; }
+
+
+/*-------
+
+/*-------------------------------------------
+    Homepage Caraousel
+-------------------------------------------*/
+
+* html .carousel { height: 348px !important; }
+* html .slide-caption { background-image: none !important; height: 220px; }
+* html .carousel-item { height: 348px; }
+
+
+.comp-b, .comp-b .slide-callout .more { background-color: #8c8179; }
+.comp-c, .comp-c .slide-callout .more { background-color: #293352; }
+.comp-d, .comp-d .slide-callout .more { background-color: #a51c30; }
+
+.carousel-controls { position: absolute; z-index: 100; left: 50%; bottom: 10px; width: 120px; height: 32px; margin-left: -449px; overflow: hidden; }
+* html .carousel-controls { bottom: 20px; }
+	.carousel-controls a { float: left; width: 32px; height: 32px;text-indent:-9999px; background-image: url(../CasualSlide/controls-carousel.gif); }
+	.carousel-controls .next { background-position: -99px -32px; border-left: 1px solid #333; }
+	.carousel-controls .next:hover, .carousel-controls .next:focus { background-position: -99px 0; border-color: #ccc; }
+	.carousel-controls .previous { background-position: 0 -32px; }
+	.carousel-controls .previous:hover, .carousel-controls .previous:focus { background-position: 0 0; }
+	.carousel-controls .pause { background-position: -33px -32px; border-left: 1px solid #333; }
+	.carousel-controls .pause:hover, .carousel-controls .pause:focus { background-position: -33px 0; border-color: #ccc; }
+	.carousel-controls .play { position: relative; bottom: auto; left: auto; background-position: -66px -32px; border-left: 1px solid #333;}
+	.carousel-controls .play:hover, .carousel-controls .play:focus { background-position: -66px 0; border-color: #ccc; }
+
+.carousel .prev-image { position: absolute; left: -978px; top: 0; opacity: 0.2; }
+.carousel .next-image { position: absolute; top: 0; right: -522px; opacity: 0.2; }
+
+.slide-caption { min-height: 200px; padding: 68px 40px 80px; }
+* html .slide-caption { padding-bottom: 60px; }
+
+
+/*-------------------------------------------
+    Video Player
+-------------------------------------------*/
+
+.video-container:hover { cursor: pointer; }
+	.video-container object { z-index: 1 !important; }
+	.video-container .caption-overlay { display: block; z-index: 1000; position: absolute; width: 80%; bottom: 50px; font-size: 1.2em; }
+	.video-container .caption-overlay a { display: block; padding: 6px 6px 5px 9px; background: #fff; background: rgba(255,255,255, .8); line-height: 2; color: #282828; font-weight: bold; text-transform: uppercase; text-decoration: none; }
+	.video-container .caption-overlay a:hover, .video-container .caption-overlay a:focus { color: #3b7abd; }
+	* html .caption-overlay { left: 0; }
+
+.js-disabled { display: none; }
+
+/*-------------------------------------------
+    Twitter
+-------------------------------------------*/
+
+#overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,.8); z-index:100; }
+#twitter-wrap { z-index: 101; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); position: absolute; top: 0; left: -9999px; }
+#twitter-wrap .close { width: 20px; height: 20px; background: transparent url(../../a/screen/closebox.png) no-repeat center center; width: 30px; height: 30px; display: block; position:absolute; top: -10px; left: -10px; text-indent: -9999px; }
+
+/*------------------------------------------
+    Fixed
+-------------------------------------------*/
+
+#filter-drop.fix { position: fixed; top: 0;  z-index: 99; }
+
+.shieldfix { background-attachment: fixed !important; } 
+

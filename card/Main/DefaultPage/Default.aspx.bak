@@ -1,0 +1,133 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Main/DefaultPage/MasterPagebootstrap.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="Main_Default" %>
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx1" %>
+
+
+
+
+
+
+
+
+
+<%@ Register assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx2" %>
+
+<%@ Register assembly="DevExpress.XtraCharts.v17.1.Web, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraCharts.Web" tagprefix="dxchartsui" %>
+<%@ Register assembly="DevExpress.XtraCharts.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraCharts" tagprefix="cc1" %>
+
+
+<%@ Register src="LoginForm.ascx" tagname="LoginForm" tagprefix="uc1" %>
+
+
+
+
+
+
+
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
+    <style type="text/css">
+        .auto-style1 {
+            width: 236px;
+            height: 238px;
+        }
+    </style>
+    
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="row">
+     <div class="col-lg-offset-3 col-lg-6">
+
+         555
+      <uc1:LoginForm ID="LoginForm1" runat="server" />
+                  
+         
+            
+         <%--<div class="panel panel-default" style="<%=getSession()%>">
+  <div class="panel-heading">Chat</div>
+  <div class="panel-body">
+ 
+         <dx:ASPxGridView ID="ASPxGridView1" ClientInstanceName="grid" runat="server" AutoGenerateColumns="False" Width="100%" DataSourceID="SqlDataSource1" KeyFieldName="ChatID">
+             <SettingsPager PageSize="50">
+             </SettingsPager>
+             <Settings VerticalScrollBarMode="Visible" VerticalScrollBarStyle="Virtual" />
+             <Columns>
+                 <dx2:GridViewDataTextColumn FieldName="CreateUser" Caption="โดย" VisibleIndex="2" Width="70px">
+                 </dx2:GridViewDataTextColumn>
+                 <dx2:GridViewDataDateColumn FieldName="CreateDate" Caption="วันที่" VisibleIndex="3" Width="90px">
+                 </dx2:GridViewDataDateColumn>
+                 <dx2:GridViewDataTextColumn FieldName="ChatMessage" Caption="ข้อความ" VisibleIndex="1">
+                 </dx2:GridViewDataTextColumn>
+             </Columns>
+         </dx:ASPxGridView>  
+         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MAINDB %>" SelectCommand="SELECT * FROM [MAS_CHAT] ORDER BY [ChatID] DESC"></asp:SqlDataSource>
+ <br />  พิมพ์ข้อความ<dx:ASPxTextBox ID="ASPxTextBox1"  AutoPostBack="false"  ClientInstanceName="memo" runat="server" Width="100%">
+             <ClientSideEvents KeyPress="function(s, e) {
+                 //alert(e.htmlEvent.keyCode);
+	 if(e.htmlEvent.keyCode == 13){
+            grid.PerformCallback(memo.GetValue());memo.SelectAll();
+                  ASPxClientUtils.PreventEventAndBubble(e.htmlEvent);
+                 
+        }
+                
+                 return false;
+}" />
+         </dx:ASPxTextBox>
+      
+   <button type="button" onclick="grid.PerformCallback(memo.GetValue());memo.SelectAll();" class="btn btn-primary">ส่งข้อความ</button>
+        <br />
+  </div>
+</div>--%>
+    
+ 
+  
+</div></div>
+
+    
+  
+     
+        </asp:Content>
+
+<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentHeader">
+    
+
+</asp:Content>
+
+
+
+<asp:Content ID="Content5" runat="server" contentplaceholderid="ContentFooter">
+    <script>
+        $("#pagenavbar").hide();
+        $("body").addClass("bs-docs-home");
+        $('body').css("background-image", "url(../Images/Textured-Background.png)");
+      //  $('body').css("background-repeat", "no-repeat");
+        $('body').css("background-size", "100%");
+        $("#pageFooter").hide();
+        $('.bs-header').css('background', 'transparent');
+   </script>
+</asp:Content>
+
+
+
+
+<asp:Content ID="Content6" runat="server" contentplaceholderid="ContentBanner">
+    <div class="bs-header noprint" >              
+      <div class="container">
+        <h1 style="color: #CCC" ><span style="color: #FFF">asset </span> <span style="color: #FF0000">management system</span></h1>
+               <p style="color: #FFFFFF">ระบบจัดการวัสดุ ครุภันฑ์ กองกลาง มหาวิทยาลัยพะเยา</p>    
+            
+      </div>                  
+</div>
+     </asp:Content>
+
+
+
+
+
